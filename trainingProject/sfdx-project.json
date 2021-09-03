@@ -5,7 +5,7 @@
       "default": true
     }
   ],
-  "name": "apexTraining",
+  "name": "trainingProject",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "52.0"
