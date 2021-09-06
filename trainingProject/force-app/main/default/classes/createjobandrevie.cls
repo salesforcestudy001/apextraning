@@ -2,49 +2,49 @@ public with sharing class createjobandrevie {
     public createjobandrevie() {
 
     }
-    public void createJobApplication(list<string> positionNames,list<string> candidateName){
+    public void createJobApplication(list<string> positionNames,list<string> candidateNames){
         //list for Job_Application__c and REVIEW__C to insert all results
         List<Job_Application__c> JOBS = new List<Job_Application__c>();
         List<REVIEW__C> REVIEWS = new List<REVIEW__C>();
         //map for all select results
-        Map<ID, candidate__C> canMap =new Map<ID, candidate__C>([SELECT ID,NAME FROM candidate__C where  name in :candidateName ]) ;
-        Map<ID, Position__c> posMap =new Map<ID, Position__c>([SELECT ID,NAME FROM Position__c where name in :candidateName]) ;
-        Map<ID, Job_Application__c> jaMap =new Map<ID, Job_Application__c>([SELECT ID,candidate__R.NAME FROM Job_Application__c where candidate__R.NAME in :candidateName]) ;
+        Map<ID, candidate__C> canMap =new Map<ID, candidate__C>([SELECT ID,NAME FROM candidate__C where  name in :candidateNames ]) ;
+        Map<ID, Position__c> posMap =new Map<ID, Position__c>([SELECT ID,NAME FROM Position__c where name in :candidateNames]) ;
+        Map<ID, Job_Application__c> jaMap =new Map<ID, Job_Application__c>([SELECT ID,candidate__R.NAME FROM Job_Application__c where candidate__R.NAME in :candidateNames]) ;
         //make two string lists have the same size
-        IF(positionNames.size()>=candidateName.size()){
-            INTEGER sizecha=positionNames.size()-candidateName.size();
+        IF(positionNames.size()>=candidateNames.size()){
+            INTEGER sizecha=positionNames.size()-candidateNames.size();
             for (integer i=0 ;i< sizecha;i++) {
-                candidateName.add(null);
+                candidateNames.add(null);
             }
         }else {
-            INTEGER sizecha=candidateName.size()-positionNames.size();
+            INTEGER sizecha=candidateNames.size()-positionNames.size();
             for (integer i=0 ;i< sizecha;i++) {
                 positionNames.add(null);
             }
         }
         try {
             //
-            for (integer i=0 ;i< candidateName.size();i++) {
-                /*List<candidate__C> can =[SELECT ID,NAME FROM candidate__C WHERE NAME=:candidateName[i] ];
-                INTEGER II=[SELECT COUNT() FROM Job_Application__c WHERE candidate__R.NAME=:candidateName[i] ];
+            for (integer i=0 ;i< candidateNames.size();i++) {
+                /*List<candidate__C> can =[SELECT ID,NAME FROM candidate__C WHERE NAME=:candidateNames[i] ];
+                INTEGER II=[SELECT COUNT() FROM Job_Application__c WHERE candidate__R.NAME=:candidateNames[i] ];
                 List<Position__c> POS =[SELECT ID,NAME FROM Position__c WHERE NAME=:positionNames[i] ];*/
 
-                //flag for  finding candidateName in job_application
+                //flag for  finding candidateNames in job_application
                 integer flag=0;
                 //id for candidate and position 
                 id canid;
                 id posid;
-                //if have the same candidateName ,set flag=1
+                //if have the same candidateNames ,set flag=1
                 for (ID jaidKey : jaMap.keyset()) {
                     Job_Application__c jaTemp=jaMap.get(jaidKey);
-                    if(jaTemp.candidate__R.NAME==candidateName[i]){
+                    if(jaTemp.candidate__R.NAME==candidateNames[i]){
                         flag=1;
                     }
                 }
-                //if have the same candidateName,set id
+                //if have the same candidateNames,set id
                 for (ID canidKey : canMap.keyset()) {
                     candidate__C canTemp = canMap.get(canidKey);
-                    if(canTemp.NAME==candidateName[i]){
+                    if(canTemp.NAME==candidateNames[i]){
                         canid=canTemp.id;
                     }
                 }
