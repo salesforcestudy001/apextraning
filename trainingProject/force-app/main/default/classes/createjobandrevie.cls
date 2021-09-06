@@ -2,7 +2,7 @@ public with sharing class createjobandrevie {
     public createjobandrevie() {
 
     }
-    public void createJobApplication(list<string> positionName,list<string> candidateName){
+    public void createJobApplication(list<string> positionNames,list<string> candidateName){
         //list for Job_Application__c and REVIEW__C to insert all results
         List<Job_Application__c> JOBS = new List<Job_Application__c>();
         List<REVIEW__C> REVIEWS = new List<REVIEW__C>();
@@ -11,15 +11,15 @@ public with sharing class createjobandrevie {
         Map<ID, Position__c> posMap =new Map<ID, Position__c>([SELECT ID,NAME FROM Position__c where name in :candidateName]) ;
         Map<ID, Job_Application__c> jaMap =new Map<ID, Job_Application__c>([SELECT ID,candidate__R.NAME FROM Job_Application__c where candidate__R.NAME in :candidateName]) ;
         //make two string lists have the same size
-        IF(positionName.size()>=candidateName.size()){
-            INTEGER sizecha=positionName.size()-candidateName.size();
+        IF(positionNames.size()>=candidateName.size()){
+            INTEGER sizecha=positionNames.size()-candidateName.size();
             for (integer i=0 ;i< sizecha;i++) {
                 candidateName.add(null);
             }
         }else {
-            INTEGER sizecha=candidateName.size()-positionName.size();
+            INTEGER sizecha=candidateName.size()-positionNames.size();
             for (integer i=0 ;i< sizecha;i++) {
-                positionName.add(null);
+                positionNames.add(null);
             }
         }
         try {
@@ -27,7 +27,7 @@ public with sharing class createjobandrevie {
             for (integer i=0 ;i< candidateName.size();i++) {
                 /*List<candidate__C> can =[SELECT ID,NAME FROM candidate__C WHERE NAME=:candidateName[i] ];
                 INTEGER II=[SELECT COUNT() FROM Job_Application__c WHERE candidate__R.NAME=:candidateName[i] ];
-                List<Position__c> POS =[SELECT ID,NAME FROM Position__c WHERE NAME=:positionName[i] ];*/
+                List<Position__c> POS =[SELECT ID,NAME FROM Position__c WHERE NAME=:positionNames[i] ];*/
 
                 //flag for  finding candidateName in job_application
                 integer flag=0;
@@ -48,10 +48,10 @@ public with sharing class createjobandrevie {
                         canid=canTemp.id;
                     }
                 }
-                //if have the same positionName,set id
+                //if have the same positionNames,set id
                 for (ID posidKey : posMap.keyset()) {
                     position__C posTemp = posMap.get(posidKey);
-                    if(posTemp.NAME==positionName[i]){
+                    if(posTemp.NAME==positionNames[i]){
                         posid=posTemp.id;
                         break;
                     }
