@@ -42,6 +42,8 @@ public with sharing class creatListMap {
                         caid_c = canId;
                         system.debug('candiateName is exsited');
                         break;
+                    }else{
+                        caid_c = null;
                     }
                 }
 
@@ -50,6 +52,8 @@ public with sharing class creatListMap {
                         poid_c = poId;
                         system.debug('positionName is exsited');
                         break;
+                    }else{
+                        poid_c = null;
                     }
                 }
 
