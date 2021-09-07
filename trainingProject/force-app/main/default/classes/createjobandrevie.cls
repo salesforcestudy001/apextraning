@@ -8,7 +8,7 @@ public with sharing class createjobandrevie {
         List<REVIEW__C> REVIEWS = new List<REVIEW__C>();
         //map for all select results
         Map<ID, candidate__C> canMap =new Map<ID, candidate__C>([SELECT ID,NAME FROM candidate__C where  name in :candidateNames ]) ;
-        Map<ID, Position__c> posMap =new Map<ID, Position__c>([SELECT ID,NAME FROM Position__c where name in :candidateNames]) ;
+        Map<ID, Position__c> posMap =new Map<ID, Position__c>([SELECT ID,NAME FROM Position__c where name in :positionNames]) ;
         Map<ID, Job_Application__c> jaMap =new Map<ID, Job_Application__c>([SELECT ID,candidate__R.NAME FROM Job_Application__c where candidate__R.NAME in :candidateNames]) ;
         //make two string lists have the same size
         IF(positionNames.size()>=candidateNames.size()){
