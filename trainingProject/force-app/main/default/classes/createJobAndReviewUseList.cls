@@ -33,8 +33,8 @@ public with sharing class createJobAndReviewUseList {
                 }
                 IF(flag==0){
                     Job_Application__c JOB=new Job_Application__c();
-                    JOB.Position__c=posid;
-                    JOB.candidate__C=canid;
+                    JOB.Position__c=postionID;
+                    JOB.candidate__C=candidateID;
                     JOBS.add(JOB) ;
                 }else {
                 throw new createException('存在');
