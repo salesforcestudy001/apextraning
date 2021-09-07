@@ -27,8 +27,8 @@ public with sharing class creatListMap {
             List<Job_Application__c> listJob = new list<Job_Application__c>();
             List<Review__c> listRev = new list<Review__c>();
 
-            Map<Id, candidate__c> canMap = new Map<Id, candidate__c>([select id,name from candidate__c]);
-            Map<Id, position__c> poMap = new Map<Id, position__c>([select id,name from position__c]);
+            Map<Id, candidate__c> canMap = new Map<Id, candidate__c>([select id,name from candidate__c where name in :candidateNameList]);
+            Map<Id, position__c> poMap = new Map<Id, position__c>([select id,name from position__c where name in :positionNameList]);
             // system.debug('canmap' + canMap);
             Set<ID>  canMap_keys = canMap.keyset();
             // System.debug('2' + canMap_keys);
