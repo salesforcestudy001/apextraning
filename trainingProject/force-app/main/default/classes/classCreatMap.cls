@@ -23,14 +23,18 @@ public with sharing class classCreatMap {
             }
     
             Map<ID, position__c> positionMap = new Map<ID, position__c>
-                                           ([SELECT id,name FROM position__c]);
+                                           ([SELECT id,name FROM position__c WHERE name IN :positionNames]);
             Map<ID, candidate__c> candidateMap = new Map<ID, candidate__c>
-                                           ([SELECT id,name FROM candidate__c]);
+                                           ([SELECT id,name FROM candidate__c WHERE name IN :candidateNames]);
            
             list<job_application__c> ja = new list<job_application__c>();
             list<review__c> ree = new list<review__c>();
 
+            for(candidate__c can :candidateMap.values()){
+                system.debug(can.name);
+            }
             
+
             for(integer i=0; i<longListSize; i++){  
                 
                 //for(String cnames : candidateNames ){
