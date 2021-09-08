@@ -19,27 +19,19 @@ public with sharing class SendEmail {
         
         
 
-        //List<ID> canIDs = new List<ID>();
-        List<String> canID_strs = new List<String>();
+
         List<String> canEmails = new List<String>();
         List<Job_Application__c> jas = 
             [select Candidate__r.id ,Candidate__r.Email__c from Job_Application__c where Position__r.id = :c.id];
             for (Job_Application__c ja : jas) {
-                //canIDS.add(ja.Candidate__r.id);
                 canEmails.add(ja.Candidate__r.Email__c);
-                canID_strs.add(String.valueOf(ja.Candidate__r.id));
             }
-            System.debug(canEmails);
-            System.debug(canID_strs);
             
-
-
             Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
-            
             message.setToAddresses(canEmails);
-            message.optOutPolicy = 'FILTER';
-            message.setsubject('Opt Out Test Message');
-            message.plainTextBody = 'This is the message body.';
+            message.setSenderDisplayName('the sender name you want to show');
+            message.setHtmlBody('AyachiNene');
+            message.setSubject('test email subject use html');
             Messaging.SingleEmailMessage[] messages = 
                 new List<Messaging.SingleEmailMessage> {message};
                     Messaging.SendEmailResult[] results = Messaging.sendEmail(messages);
