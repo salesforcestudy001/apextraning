@@ -7,18 +7,12 @@ public with sharing class sentEmailwithWebsite {
         job_posting__c jobPosting=[select Position__c from job_posting__c where Employment_Website__r.Web_Address__c=:website];
         //find position's name which id in jobposting
         position__c position =[select id,name from position__c where id=:jobposting.Position__c];
-        //find jobapplication related candidate's name which related position's name equals above position's name
-        list<Job_Application__c> Jobs =[SELECT candidate__R.NAME FROM Job_Application__c WHERE POSITION__R.NAME=:position.name];
-        //find all candidate 
-        List<candidate__c> listCandidate = [select name,email__c from candidate__c ];
+        //find jobapplication related candidate's email which related position's name equals above position's name
+        list<Job_Application__c> Jobs =[SELECT candidate__R.email__c FROM Job_Application__c WHERE POSITION__R.NAME=:position.name];
         list<string> emailAdddresses=new list<string>();
         //find right address ,then add into list
         for (Job_Application__c JOB : Jobs) {
-            for (candidate__c candidate : listCandidate) {
-                if(candidate.name==job.candidate__R.name){
-                    emailAdddresses.add(candidate.email__c);
-                }
-            }
+                    emailAdddresses.add(JOB.candidate__R.email__c);
         }
         //if emailaddress not null send the email
         for(string str:emailAdddresses){
