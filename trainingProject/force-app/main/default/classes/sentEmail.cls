@@ -1,35 +1,28 @@
 public with sharing class sentEmail {
-public static void SendEmailTest(String url) {
-    Position__c c=new  Position__c();
-    List<Job_Posting__c> jps = 
-        [select Position__r.id from Job_Posting__c where Employment_Website__r.Web_Address__c = :url];
-    for (Job_Posting__c jp : jps) {
-    c.id = jp.Position__r.id;
-    }
-        
-        
-    List<String> messagess = new List<String>();
-    List<Job_Application__c> jas = 
-        [select Candidate__r.id from Job_Application__c where Position__r.id = :c.id];
-    for (Job_Application__c ja : jas) {
-    messagess.add(ja.Candidate__r.id);
+    public static void sentEmail(string website){
+        //find record that webaddress equals website in Employment_Website__c by job_posting__c using soql
+        job_posting__c jobPosting=[select Position__c from job_posting__c where Employment_Website__r.Web_Address__c=:website];
+        //find position's name which id in jobposting
+        position__c position =[select id,name from position__c where id=:jobposting.Position__c];
+        //find jobapplication related candidate's name which related position's name equals above position's name
+        list<Job_Application__c> Jobs =[SELECT candidate__R.NAME FROM Job_Application__c WHERE POSITION__R.NAME=:position.name];
+        //find all candidate 
+        List<candidate__c> listCandidate = [select name,email__c from candidate__c ];
+        list<string> emailAdddresses=new list<string>();
+        //find right address ,then add into list
+        for (Job_Application__c JOB : Jobs) {
+            for (candidate__c candidate : listCandidate) {
+                if(candidate.name==job.candidate__R.name){
+                    emailAdddresses.add(candidate.email__c);
+                }
+            }
         }
-        
-    Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
-    // Set recipients to two contact IDs.
-    // Replace IDs with valid record IDs in your org.
-    message.toAddresses = messagess;
-    message.optOutPolicy = 'FILTER';
-    message.subject = 'Opt Out Test Message';
-    message.plainTextBody = 'This is a home work';
-    Messaging.SingleEmailMessage[] messages = 
-    new List<Messaging.SingleEmailMessage> {message};
-    Messaging.SendEmailResult[] results = Messaging.sendEmail(messages);
-    if (results[0].success) {
-    System.debug('The email was sent successfully.');
-        } else {
-    System.debug('The email failed to send: '
-        + results[0].errors[0].message);
+        //if emailaddress not null send the email
+        for(string str:emailAdddresses){
+            if(str!=null){
+                EmailManager em = new EmailManager();
+                em.sendMail(str, 'subject', ' body');
+            }
         }
     }
 }
