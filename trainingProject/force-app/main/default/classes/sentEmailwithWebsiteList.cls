@@ -38,7 +38,7 @@ public with sharing class sentEmailwithWebsiteList {
             }else{
                 system.debug('Candidate have no emails!');
             }
-            system.debug('Sent '+count+' emails!');
         }
+        system.debug('Sent '+count+' emails!');
     }
 }
