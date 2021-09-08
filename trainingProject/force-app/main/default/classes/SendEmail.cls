@@ -19,30 +19,36 @@ public with sharing class SendEmail {
         
         
 
-        List<ID> canIDs = new List<ID>();
+       // List<ID> canIDs = new List<ID>();
+        //List<String> canID_str = new List<String>();
+        List<String> canEmails = new List<String>();
         List<Job_Application__c> jas = 
-            [select Candidate__r.id from Job_Application__c where Position__r.id = :c.id];
+            [select Candidate__r.id ,Candidate__r.Email__c from Job_Application__c where Position__r.id = :c.id];
             for (Job_Application__c ja : jas) {
-                canIDS.add(ja.Candidate__r.id);
+                //canIDS.add(ja.Candidate__r.id);
+                canEmails.add(ja.Candidate__r.Email__c);
+                //canID_str.add((String)(ja.Candidate__r.id));
             }
-            System.debug(canIDS);
+            System.debug(canEmails);
+            //System.debug(canIDS);
+            
 
             
-            // Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
-            // // Set recipients to two contact IDs.
-            // // Replace IDs with valid record IDs in your org.
-            // message.toAddresses = canIDs;
-            // message.optOutPolicy = 'FILTER';
-            // message.subject = 'This is a home work';
-            // message.plainTextBody = 'This is a home work';
-            // Messaging.SingleEmailMessage[] messages = 
-            //     new List<Messaging.SingleEmailMessage> {message};
-            //         Messaging.SendEmailResult[] results = Messaging.sendEmail(messages);
-            // if (results[0].success) {
-            //     System.debug('The email was sent successfully.');
-            // } else {
-            //     System.debug('The email failed to send: '
-            //         + results[0].errors[0].message);
-            // }
+            Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
+            // Set recipients to two contact IDs.
+            // Replace IDs with valid record IDs in your org.
+            message.toAddresses = canEmails;
+            message.optOutPolicy = 'FILTER';
+            message.subject = 'This is a home work';
+            message.plainTextBody = 'This is a home work';
+            Messaging.SingleEmailMessage[] messages = 
+                new List<Messaging.SingleEmailMessage> {message};
+                    Messaging.SendEmailResult[] results = Messaging.sendEmail(messages);
+            if (results[0].success) {
+                System.debug('The email was sent successfully.');
+            } else {
+                System.debug('The email failed to send: '
+                    + results[0].errors[0].message);
+            }
         }
 }
