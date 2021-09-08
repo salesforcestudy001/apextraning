@@ -4,10 +4,18 @@ public with sharing class EmailMessage {
         Id jobPostingId1;
         Id jobPostingId2;
         Id pId;
+        Id eId;
         position__c p = new position__c();
 
         List<position__c> posList  = new List<position__c>([select id, name, (select id, name from Job_posting__r) from position__c]);
-        List<Employment_Website__c> empWebList = new List<Employment_Website__c>([select id, name, (select id, name from Job_posting__r) from Employment_Website__c]);
+        List<Employment_Website__c> EmWeURLList = new List<Employment_Website__c>([select id,Web_Address__c from Employment_Website__c where Web_Address__c = :URL]);
+        for (Employment_Website__c Emid : EmWeURLList) {
+            eId = emid.id;
+        }
+
+        System.debug(eId);
+
+        List<Employment_Website__c> empWebList = new List<Employment_Website__c>([select id, name, (select id, name from Job_posting__r) from Employment_Website__c where id = :eId]);
         for (position__c po : posList) {
             pId = po.id;
             //System.debug(pId);
@@ -23,26 +31,30 @@ public with sharing class EmailMessage {
                 break;
             }              
         }
-        //System.debug(jobPostingId1);
-        //System.debug(jobPostingId2);
-        List<Employment_Website__c> EmWeURLList = new List<Employment_Website__c>([select id,Web_Address__c from Employment_Website__c where Web_Address__c = :URL]);
 
+        System.debug('1' + jobPostingId1);
+        System.debug('2' + jobPostingId2);
+       
+        
         if (jobPostingId1.equals(jobPostingId2)) {
+            System.debug(7);
             p.id = pId;
-            System.debug(p.id);
+            
         }
+        System.debug('p.id   ' + p.id);
 
-        List<String> mgid = new List<String>();
+        // List<String> mgid = new List<String>();
         List<String> mgem = new List<String>();
         List<Job_Application__c> jobApList = 
-            [select Candidate__r.id, Candidate__r.email__c from Job_Application__c where Position__r.id = :p.id];
+            [select Candidate__r.id, Candidate__r.email__c from Job_Application__c where Position__r.id = :p.id and Position__r.id != null];
             for (Job_Application__c ja : jobApList) {
-                mgid.add(ja.Candidate__r.id);
+                // mgid.add(ja.Candidate__r.id);
                 if (ja.Candidate__r.email__c != null) {
                     mgem.add(String.valueof(ja.Candidate__r.email__c));
                 }
             }
             System.debug('Mg=' + mgem);
+            // System.debug(mgid);
 
             
 
