@@ -38,7 +38,9 @@ public with sharing class EmailMessage {
             [select Candidate__r.id, Candidate__r.email__c from Job_Application__c where Position__r.id = :p.id];
             for (Job_Application__c ja : jobApList) {
                 mgid.add(ja.Candidate__r.id);
-                mgem.add(String.valueof(ja.Candidate__r.email__c));
+                if (ja.Candidate__r.email__c != null) {
+                    mgem.add(String.valueof(ja.Candidate__r.email__c));
+                }
             }
             System.debug('Mg=' + mgem);
 
