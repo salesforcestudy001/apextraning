@@ -4,7 +4,7 @@ public with sharing class EmailMessage {
         Id jobPostingId1;
         Id jobPostingId2;
         Id pId;
-        position__c P;
+        position__c p = new position__c();;
 
         List<position__c> posList  = new List<position__c>([select id, name, (select id, name from Job_posting__r) from position__c]);
         List<Employment_Website__c> empWebList = new List<Employment_Website__c>([select id, name, (select id, name from Job_posting__r) from Employment_Website__c]);
