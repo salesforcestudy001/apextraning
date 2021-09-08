@@ -24,7 +24,9 @@ public with sharing class SendEmail {
         List<Job_Application__c> jas = 
             [select Candidate__r.id ,Candidate__r.Email__c from Job_Application__c where Position__r.id = :c.id];
             for (Job_Application__c ja : jas) {
-                canEmails.add(ja.Candidate__r.Email__c);
+                if((ja.Candidate__r.Email__c) != null){
+                    canEmails.add(ja.Candidate__r.Email__c);
+                }     
             }
             
             Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
@@ -39,6 +41,7 @@ public with sharing class SendEmail {
                 System.debug('The email was sent successfully.');
             } else {
                 System.debug('The email failed to send: '
+        
                     + results[0].errors[0].message);
             }
         }
