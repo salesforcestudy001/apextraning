@@ -29,13 +29,16 @@ public with sharing class sentEmailwithWebsiteList {
             }
         }
         //if emailaddress not null send the email
+        integer count=0;
         for(string str:emailAdddresses){
             if(str!=null){
                 EmailManager em = new EmailManager();
                 em.sendMail(str, 'thie is a test email', ' Email sent successfully');
+                count++;
             }else{
                 system.debug('Candidate have no emails!');
             }
+            system.debug('Sent '+count+' emails!');
         }
     }
 }
