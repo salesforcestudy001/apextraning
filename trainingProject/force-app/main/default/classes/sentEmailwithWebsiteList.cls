@@ -15,18 +15,12 @@ public with sharing class sentEmailwithWebsiteList {
         for (position__c pos : positions) {
             positionsNames.add(pos.name);
         }
-        //find jobapplication related candidate's name which related position's name equals above position's name
-        list<Job_Application__c> Jobs =[SELECT candidate__R.NAME FROM Job_Application__c WHERE POSITION__R.NAME in :positionsNames];
-        //find all candidate 
-        List<candidate__c> listCandidate = [select name,email__c from candidate__c ];
+        //find jobapplication related candidate's email which related position's name equals above position's name
+        list<Job_Application__c> Jobs =[SELECT candidate__R.email__c FROM Job_Application__c WHERE POSITION__R.NAME=:positionsNames];
         list<string> emailAdddresses=new list<string>();
         //find right address ,then add into list
         for (Job_Application__c JOB : Jobs) {
-            for (candidate__c candidate : listCandidate) {
-                if(candidate.name==job.candidate__R.name){
-                    emailAdddresses.add(candidate.email__c);
-                }
-            }
+                    emailAdddresses.add(JOB.candidate__R.email__c);
         }
         //if emailaddress not null send the email
         integer count=0;
