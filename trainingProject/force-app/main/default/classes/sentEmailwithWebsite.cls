@@ -4,11 +4,13 @@ public with sharing class sentEmailwithWebsite {
     }
     public static void sentEmail(string website){
         //find record that webaddress equals website in Employment_Website__c by job_posting__c using soql
-        job_posting__c jobPosting=[select Position__c from job_posting__c where Employment_Website__r.Web_Address__c=:website];
+        job_posting__c jobPosting=
+        [select Position__c from job_posting__c where Employment_Website__r.Web_Address__c=:website];
         //find position's name which id in jobposting
         position__c position =[select id,name from position__c where id=:jobposting.Position__c];
         //find jobapplication related candidate's email which related position's name equals above position's name
-        list<Job_Application__c> Jobs =[SELECT candidate__R.email__c FROM Job_Application__c WHERE POSITION__R.NAME=:position.name];
+        list<Job_Application__c> Jobs =
+        [SELECT candidate__R.email__c FROM Job_Application__c WHERE POSITION__R.NAME=:position.name];
         list<string> emailAdddresses=new list<string>();
         //find right address ,then add into list
         for (Job_Application__c JOB : Jobs) {
