@@ -24,7 +24,7 @@ public with sharing class sentEmailwithWebsite {
         for(string str:emailAdddresses){
             if(str!=null){
                 EmailManager em = new EmailManager();
-                em.sendMail(str, 'subject', ' body');
+                em.sendMail(str, '我是你哥哥', ' 我是你妹妹');
             }else{
                 system.debug('Candidate have no emails!');
             }
