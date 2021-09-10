@@ -1,21 +1,27 @@
 public with sharing class JobApplicationTriggerHandler extends TriggerHandlerAdapter{
+    //viriable for trigger is active or not
     public static Boolean triggerDisabled = FALSE;
-
+    //get trigger acivity
     public override Boolean isDisabled() {
       return triggerDisabled;
     }
+    //beforeinsert  trigger method
     public override void beforeInsert(List<SObject> newItems) {
         addApplicationBango((List<Job_Application__c>) newItems);
     }
+    //afterInsert  trigger method
     public override void afterInsert(Map<Id, SObject> newItems ) {
         avgSalary((Map<Id, Job_Application__c>) newItems);
     }
+    //afterUpdate  trigger method
     public override void afterUpdate(Map<Id, SObject> newItems,Map<Id, SObject> oldItems) {
         avgSalary((Map<Id, Job_Application__c>) newItems);
     }
-    public override void beforeDelete(Map<Id, SObject> oldItems) {
+    //beforeDelete  trigger method
+    public override void afterDelete(Map<Id, SObject> oldItems) {
         avgSalaryforDelete((Map<Id, Job_Application__c>) oldItems);
     }
+    //auto-generate ApplicationBangos that have the same format like 'A00000001',set maxbango+1 as generated ApplicationBango
     public void addApplicationBango(List<Job_Application__c> JobApplications){
         map<integer,Job_Application__c> jobmap=new map<integer,Job_Application__c>();
         integer maxBango=0;
@@ -43,6 +49,7 @@ public with sharing class JobApplicationTriggerHandler extends TriggerHandlerAda
             JobApplications[m].ApplicationBango__c=template+finalBango;
         }
     }
+    //get all records average salary and update candidate__c
     public void avgSalary(Map<Id, Job_Application__c> JobApplications){
         Map<string, double> avgSalaryMap = new Map<string, double>();
         set<candidate__c> candidates=new set<candidate__c>();
@@ -61,6 +68,7 @@ public with sharing class JobApplicationTriggerHandler extends TriggerHandlerAda
         list<candidate__c> canlist=new list<candidate__c>(candidates);
         update canlist;
     }
+    //get all records except deleted records ,then get average salary and update candidate__c
     public void avgSalaryforDelete(Map<Id, Job_Application__c> JobApplications){
         Map<string, double> avgSalaryMap = new Map<string, double>();
         set<candidate__c> candidates=new set<candidate__c>();
