@@ -28,11 +28,17 @@ public with sharing class FunctionRealization {
             // System.debug(putZero(MaxBango));
             return putZero(conutJob_Application + 1 + i);
         }
-      
         
     }
 
     public void HeikinKibouKyuryou(){
+        
+       
+        List<Job_Application__c> ExpectSalarys = [select ExpectSalary__c from Job_Application__c where ExpectSalary__c = null];
+        for (Job_Application__c  ExpectSalary: ExpectSalarys) {
+                ExpectSalary.ExpectSalary__c = 0;       
+        }
+        Update ExpectSalarys;
         
         List<Candidate__c> Candidates = [select ID,AverageSalary__c from Candidate__c];
         ID canId ;
