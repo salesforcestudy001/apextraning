@@ -1,10 +1,3 @@
-/**
- *File Name     : ITriggerHandler
- *@description  : トリガハンドラーのインターフェース
- *Author        : Accenture,zhi.b.zhang
- *CreatedDate   : 2021/02/02
- *UpdatedDate   :
- */
 public interface ITriggerHandler {
     /**
      *  @description 挿入前処理
