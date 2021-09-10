@@ -26,64 +26,53 @@ public with sharing class JobApplicationTriggerHandler extends TriggerHandlerAda
                 Bangos.add(bango);
             }
         }
-        for (integer  i =0;i<Bangos.size()-1;i++) {
-            for (integer  j=i+1;j<Bangos.size() ; j++) {
-                if(Bangos[i]<Bangos[j]){
-                    integer a =0;
-                    a=Bangos[i];
-                    Bangos[i]=Bangos[j];
-                    Bangos[j]=a;
-                }
-            }
-        }
-        maxBango=Bangos[0];
+        Bangos.sort();
+        maxBango=Bangos[Bangos.size()-1];
         for (integer m=0;m<JobApplications.size();m++) {
             integer strlen;
             integer bangolen=0;
-            integer weishu;
-            String template='A';
-            do {
-                weishu=(maxBango+m+1)/10;
+            for(integer temp=maxBango+m+1;temp!=0;temp/=10){
                 bangolen++;
-            } while (weishu!=0);
+            }
+            String template='A';
             strlen=9-bangolen-1;
             for (integer j=0 ;j<strlen;j++) {
                 template=template+'0';
             }
-            JobApplications[m].ApplicationBango__c=template+maxBango;
+            integer finalBango=maxBango+m+1;
+            JobApplications[m].ApplicationBango__c=template+finalBango;
         }
     }
     public void avgSalary(Map<Id, Job_Application__c> JobApplications){
         Map<string, double> avgSalaryMap = new Map<string, double>();
         list<candidate__c> candidates=new list<candidate__c>();
-        for (AggregateResult[]  resultss 
-                : [select avg(ExpectSalary__c)avgSalary,candidate__c from Job_Application__c  group by candidate__c]) {
-                    for (AggregateResult results : resultss) {
+        for (AggregateResult  results 
+                : [select avg(ExpectSalary__c)avgSalary,candidate__c from Job_Application__c  group by candidate__c]) {                    
                         avgSalaryMap.put((string)results.get('candidate__c'),(double)results.get('avgSalary'));
-                    }
                 }
         for (list<Job_Application__c> jobs : [select candidate__c,candidate__r.AverageSalary__c,Id from Job_Application__c where Id in :JobApplications.keySet()]) {
             for (Job_Application__c job : jobs) {
-                job.candidate__r.AverageSalary__c=avgSalaryMap.get(job.candidate__c);
-                candidates.add(job.candidate__r);
+                if(job.candidate__c!=null){
+                  job.candidate__r.AverageSalary__c=avgSalaryMap.get(job.candidate__c);
+                  candidates.add(job.candidate__r);
+                }
             }
         }
         update candidates;
     }
     public void avgSalaryforDelete(Map<Id, Job_Application__c> JobApplications){
         Map<string, double> avgSalaryMap = new Map<string, double>();
-        Map<string, double> sumSalaryOldMap = new Map<string, double>();
         list<candidate__c> candidates=new list<candidate__c>();
-        for (AggregateResult[] resultss
+        for (AggregateResult results
                 : [select avg(ExpectSalary__c)avgSalary,candidate__c from Job_Application__c where Id not in :JobApplications.keySet() group by candidate__c]) {
-                    for (AggregateResult results : resultss) {
-                        avgSalaryMap.put((string)results.get('candidate__c'),(double)results.get('avgSalary'));
-                    }                  
+                        avgSalaryMap.put((string)results.get('candidate__c'),(double)results.get('avgSalary'));                
         }
         for (list<Job_Application__c> jobs : [select candidate__c,candidate__r.AverageSalary__c,Id from Job_Application__c where Id in :JobApplications.keySet()]) {
             for (Job_Application__c job : jobs) {
-                job.candidate__r.AverageSalary__c=avgSalaryMap.get(job.candidate__c);
-                candidates.add(job.candidate__r);
+                if(job.candidate__c!=null){
+                  job.candidate__r.AverageSalary__c=avgSalaryMap.get(job.candidate__c);
+                  candidates.add(job.candidate__r);
+                }
             }
         }
         update candidates;
