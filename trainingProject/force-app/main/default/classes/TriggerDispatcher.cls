@@ -1,10 +1,4 @@
-/**
- *File Name     : TriggerDispatcher
- *@description  : トリガのディスパッチャー
- *Author        : Accenture,zhi.b.zhang
- *CreatedDate   : 2021/02/02
- *UpdatedDate   :
- */
+
 public class TriggerDispatcher {
     /**
      *  @description ディスパッチャーを実行

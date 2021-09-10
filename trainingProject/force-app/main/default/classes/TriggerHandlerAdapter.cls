@@ -1,10 +1,4 @@
-/**
- *File Name     : TriggerHandlerAdapter
- *@description  : トリガハンドラーのアダプター
- *Author        : Accenture,zhi.b.zhang
- *CreatedDate   : 2021/02/02
- *UpdatedDate   :
- */
+
 public virtual class TriggerHandlerAdapter implements ITriggerHandler {
     /**
      *  @description トリガ無効化フラグを取得
