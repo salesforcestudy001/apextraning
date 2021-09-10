@@ -29,8 +29,8 @@ public with sharing class JobApplicationTriggerHandler extends TriggerHandlerAda
         Bangos.sort();
         maxBango=Bangos[Bangos.size()-1];
         for (integer m=0;m<JobApplications.size();m++) {
-            integer strlen;
             integer bangolen=0;
+            integer strlen=9;
             for(integer temp=maxBango+m+1;temp!=0;temp/=10){
                 bangolen++;
             }
@@ -45,7 +45,7 @@ public with sharing class JobApplicationTriggerHandler extends TriggerHandlerAda
     }
     public void avgSalary(Map<Id, Job_Application__c> JobApplications){
         Map<string, double> avgSalaryMap = new Map<string, double>();
-        list<candidate__c> candidates=new list<candidate__c>();
+        set<candidate__c> candidates=new set<candidate__c>();
         for (AggregateResult  results 
                 : [select avg(ExpectSalary__c)avgSalary,candidate__c from Job_Application__c  group by candidate__c]) {                    
                         avgSalaryMap.put((string)results.get('candidate__c'),(double)results.get('avgSalary'));
@@ -58,11 +58,12 @@ public with sharing class JobApplicationTriggerHandler extends TriggerHandlerAda
                 }
             }
         }
-        update candidates;
+        list<candidate__c> canlist=new list<candidate__c>(candidates);
+        update canlist;
     }
     public void avgSalaryforDelete(Map<Id, Job_Application__c> JobApplications){
         Map<string, double> avgSalaryMap = new Map<string, double>();
-        list<candidate__c> candidates=new list<candidate__c>();
+        set<candidate__c> candidates=new set<candidate__c>();
         for (AggregateResult results
                 : [select avg(ExpectSalary__c)avgSalary,candidate__c from Job_Application__c where Id not in :JobApplications.keySet() group by candidate__c]) {
                         avgSalaryMap.put((string)results.get('candidate__c'),(double)results.get('avgSalary'));                
@@ -75,7 +76,8 @@ public with sharing class JobApplicationTriggerHandler extends TriggerHandlerAda
                 }
             }
         }
-        update candidates;
+        list<candidate__c> canlist=new list<candidate__c>(candidates);
+        update canlist;
     }
 
 }
