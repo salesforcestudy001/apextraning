@@ -35,18 +35,9 @@ public with sharing class JobApplicationTriggerHandler extends TriggerHandlerAda
         Bangos.sort();
         maxBango=Bangos[Bangos.size()-1];
         for (integer m=0;m<JobApplications.size();m++) {
-            integer bangolen=0;
-            integer strlen=9;
-            for(integer temp=maxBango+m+1;temp!=0;temp/=10){
-                bangolen++;
-            }
             String template='A';
-            strlen=9-bangolen-1;
-            for (integer j=0 ;j<strlen;j++) {
-                template=template+'0';
-            }
-            integer finalBango=maxBango+m+1;
-            JobApplications[m].ApplicationBango__c=template+finalBango;
+            string stringMaxBango=string.valueOf(maxBango+m+1);
+            JobApplications[m].ApplicationBango__c=template+stringMaxBango.leftpad(8,'0');
         }
     }
     //get all records average salary and update candidate__c
