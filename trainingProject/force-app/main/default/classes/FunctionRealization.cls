@@ -1,8 +1,12 @@
 public with sharing class FunctionRealization {
-    public String BangoInsert(Integer i){
+    public void BangoInsert(List<SObject> newItems){
 
         // 当Job_Application追加一条记录的时候，申請番号会自动採番、採番的格式是「A00000001」,
         // 比如如果数据库里已经存在11条Job_Application记录，再追加一条的时候申請番号的值应该是「A00000012」.
+
+        integer JaCount = 1;
+
+        List<String> JaBangos = new List<String>();
         List<Integer> Bangos = new List<Integer>();
         Integer MaxBango = 0;
         integer conutJob_Application = [select count() from Job_Application__c];
@@ -21,15 +25,19 @@ public with sharing class FunctionRealization {
                 MaxBango = Bango;
             }
         }
-        if(MaxBango > conutJob_Application){
-            // System.debug(putZero(MaxBango));
-            return putZero(MaxBango + 1 + i);
-        }else {
-            // System.debug(putZero(MaxBango));
-            return putZero(conutJob_Application + 1 + i);
-        }
-        
+        for (Job_Application__c ja : (List<Job_Application__c>)newItems) {
+            if(MaxBango > conutJob_Application){
+                // System.debug(putZero(MaxBango));
+                ja.ApplicationBango__c =  putZero(MaxBango + JaCount);
+            }else {
+                // System.debug(putZero(MaxBango));
+                ja.ApplicationBango__c = putZero(conutJob_Application + JaCount);
+            }
+            JaCount ++;
+        }      
     }
+
+
 
     public void HeikinKibouKyuryou(){
         
@@ -52,6 +60,7 @@ public with sharing class FunctionRealization {
                 for (Candidate__c Candidate : Candidates) {
                     if (canId.equals(Candidate.id)) {
                         Candidate.AverageSalary__c = canAvg;
+                        break;
                     }
                 }
             }
