@@ -17,14 +17,14 @@ public with sharing class test0915 {
         insert jp;
 
         List<candidate__c> canList = new List<candidate__c>();
-        for (Integer i = 0; i < =10; i++) {
+        for (Integer i = 0; i < 11; i++) {
             candidate__c canTest=new candidate__c();
             canList.add(canTest);
         }
         insert canList;
         //
         List<job_application__c> jobList = new List<job_application__c>();
-        for (Integer i = 0; i < =10; i++) {
+        for (Integer i = 0; i < 11; i++) {
             job_application__c jobTest=new job_application__c();
             jobTest.candidate__c=canList[i].id;
             jobTest.position__c=p.id;
