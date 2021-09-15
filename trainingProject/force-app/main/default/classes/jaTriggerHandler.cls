@@ -1,5 +1,5 @@
 public with sharing class jaTriggerHandler extends TriggerHandlerAdapter{
-  public static Boolean triggerDisabled = FALSE;
+  public static Boolean triggerDisabled = True;
   //get trigger acivity
   public override Boolean isDisabled() {
     return triggerDisabled;
