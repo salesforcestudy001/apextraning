@@ -1,4 +1,3 @@
-@isTest
 public with sharing class factory {
     public static  void factory(){
         position__c po = new position__c(name = 'firstTest');
