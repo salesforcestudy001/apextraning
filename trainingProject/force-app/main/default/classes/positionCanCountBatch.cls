@@ -1,6 +1,6 @@
 public class positionCanCountBatch implements Database.Batchable<sObject>, Database.stateful{
 
-    ID positionID;
+    List<ID> positionID = new List<ID>();
     Integer candidateCount;
     List<String> URL = new List<String>();
     public Database.QueryLocator start(Database.BatchableContext bc){
@@ -19,13 +19,13 @@ public class positionCanCountBatch implements Database.Batchable<sObject>, Datab
                         [select position__r.id,count(candidate__r.id)countcan from job_Application__c group by position__r.id]) {
             candidateCount = Integer.valueOf(count.get('countcan'));
             System.debug(candidateCount);
-            if (candidateCount > 10) {
-                positionID = (ID)count.get('id');
+            if (candidateCount > 2) {
+                positionID.add((ID)count.get('id'));
                 System.debug(positionID);
             }
         }
            List<Job_Posting__c> empWebList = 
-                        [select Employment_Website__r.Web_Address__c from Job_Posting__c where Position__c = :positionID ];
+                        [select Employment_Website__r.Web_Address__c from Job_Posting__c where Position__c in :positionID ];
            for (Job_Posting__c emp : empWebList) {
                URL.add(emp.Employment_Website__r.Web_Address__c);
                System.debug(emp.Employment_Website__r.Web_Address__c);
@@ -33,7 +33,7 @@ public class positionCanCountBatch implements Database.Batchable<sObject>, Datab
         }
 
     public void finish(Database.BatchableContext bc){
-        System.debug('finish');
+        // System.debug('finish');
         System.debug(URL);        
     }
 }
