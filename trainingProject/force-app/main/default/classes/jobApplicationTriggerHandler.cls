@@ -48,7 +48,7 @@ public with sharing class jobApplicationTriggerHandler extends TriggerHandlerAda
         map<id,candidate__c> candidates=new map<id,candidate__c>([select id from candidate__c]);
         for (AggregateResult result : [select avg(ExpectSalary_c__c)avgsalary,candidate__c from job_application__c GROUP BY candidate__c]){
             for(id jobid:joblst.keyset()){
-                if ((id)result.get('candidate__c')==joblst.get(jobid).candidate__c) {
+                if ((id)result.get('candidate__c')==joblst.get(jobid).candidate__c){
                     if (joblst.get(jobid).candidate__c!=null) {
                         candidates.get(joblst.get(jobid).candidate__c).AverageSalary_c__c=(Double)result.get('avgsalary');
                         canlist.add(candidates.get(joblst.get(jobid).candidate__c));
