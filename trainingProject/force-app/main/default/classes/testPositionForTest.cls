@@ -12,3 +12,4 @@ public with sharing class testPositionForTest {
     }
 
 }
+
