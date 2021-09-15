@@ -9,34 +9,22 @@ public with sharing class BathTest02 implements Database.Batchable<sObject>,Data
     public Database.QueryLocator start(Database.BatchableContext bc){
         String sql = 
             'select position__r.id from Job_Application__c ';
-        // System.debug('start');
         return Database.getQueryLocator(sql);
     } 
 
     public void execute(Database.BatchableContext bc,List<Job_Application__c> records){
-        // System.debug('execute');
-        for (Job_Application__c j : records) {
-            // System.debug(j);
-        }
-        
-    
         for (Aggregateresult id_count :  [select position__r.id ,count(Candidate__r.id) countCan from Job_Application__c group by Position__r.id]) {
             if((Integer)id_count.get('countCan') > 10){
                 positions.add((ID)id_count.get('id')); 
             }
         }
-        // System.debug(positions);
     }
 
     public void finish(Database.BatchableContext bc){
-        // System.debug('finish');
-        // System.debug(positions);
         List<Job_Posting__c> jps = 
             [select Position__r.id,Employment_Website__r.Web_Address__c from Job_Posting__c];
         for (ID p : positions) {
-            // System.debug(p);
             for (Job_Posting__c jp : jps) {
-                // System.debug(jp.position__r.id);
                 if(jp.position__r.id.equals(p)){
                     System.debug(jp.Employment_Website__r.Web_Address__c);
                 }
