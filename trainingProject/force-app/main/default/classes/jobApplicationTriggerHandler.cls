@@ -1,6 +1,6 @@
 public with sharing class jobApplicationTriggerHandler extends TriggerHandlerAdapter {
     // ブランド店舗トリガ無効化フラグ
-    public static Boolean triggerDisabled = FALSE;
+    public static Boolean triggerDisabled = true;
     /**
      *  @description ブランド店舗トリガ無効化フラグを取得
      *  @return triggerDisabled
