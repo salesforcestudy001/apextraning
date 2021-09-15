@@ -1,5 +1,6 @@
 @isTest
 public with sharing class batchTest {
+    
     @TestSetup
     static void makeData(){
         factory.factory();

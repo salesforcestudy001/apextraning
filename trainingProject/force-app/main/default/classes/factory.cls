@@ -27,7 +27,6 @@ public with sharing class factory {
         jp.Employment_Website__c = e.id;
         jp.Position__c = p.id;
         insert jp;
-        
 
     }
 }
