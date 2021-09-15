@@ -19,7 +19,7 @@ public class positionCanCountBatch implements Database.Batchable<sObject>, Datab
                         [select position__r.id,count(candidate__r.id)countcan from job_Application__c group by position__r.id]) {
             candidateCount = Integer.valueOf(count.get('countcan'));
             System.debug(candidateCount);
-            if (candidateCount > 2) {
+            if (candidateCount > 10) {
                 positionID = (ID)count.get('id');
                 System.debug(positionID);
             }
