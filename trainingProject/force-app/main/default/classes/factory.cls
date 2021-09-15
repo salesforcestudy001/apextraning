@@ -1,5 +1,6 @@
 public with sharing class factory {
     public static void factory() {
+        
         // 测试数据
         position__c p = new position__c();
         p.Name = 'test01';

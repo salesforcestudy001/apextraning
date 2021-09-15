@@ -4,6 +4,7 @@ public with sharing class batchTest {
     static void makeData(){
         factory.factory();
     }
+    
     static testMethod void testo1(){
         Test.startTest();
         positionCanCountBatch b1 = new positionCanCountBatch();
