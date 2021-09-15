@@ -7,7 +7,7 @@ public with sharing class printWebsite  implements Database.Batchable<sObject>,D
     public Database.QueryLocator start(Database.BatchableContext bc) {
         System.debug('**start begin');
         Websites=new map<id,List<string>>();
-        string sql='select id,(select id,candidate__c from job_application__r),name from position__c';
+        string sql='select id,(select id,candidate__c from job_application__r),name,(select Employment_Website__r.Web_Address__c from Job_Posting__r) from position__c';
         System.debug('**start end');
         return Database.getQueryLocator(sql);
       }
@@ -23,13 +23,9 @@ public with sharing class printWebsite  implements Database.Batchable<sObject>,D
                 }
             }
             if (canId.size()>10) {
-              for(list<Job_Posting__c> jobPostings:[select Employment_Website__r.Web_Address__c,position__c from Job_Posting__c]){
-                for (Job_Posting__c jobPosting : jobPostings) {
-                    if (jobPosting.position__c==pos.id) {
+                for (Job_Posting__c jobPosting : pos.Job_Posting__r) {
                       strWebsites.add(jobPosting.Employment_Website__r.Web_Address__c);
-                    }
-                }
-              }
+                }  
             }
             Websites.put(pos.id,strWebsites);
         }               
