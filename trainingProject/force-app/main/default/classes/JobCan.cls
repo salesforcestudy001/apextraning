@@ -9,27 +9,34 @@ public with sharing class JobCan {
     // 请使用上午提供的Trigger框架。
 
     public static void JobBango(List<Job_Application__c> jobapList) {
-        System.debug(2);
+        // System.debug(2);
 
         String ApplicationBango;
         List<Integer> bangoList = new List<Integer>();
 
         Integer count = [select count() from Job_Application__c];
         // Integer count = Integer.valueOf(countId);
+        Integer bango = 0;
 
 
-        for (List<Job_Application__c> JobList : [select id,name,ApplicationBango__c from Job_Application__c]) {
+
+
+        List<Job_Application__c> JobList = [select ApplicationBango__c from Job_Application__c];
+
+ 
+                bangoList.add(-1);
+
             for (Job_Application__c JobBango : JobList) {
                 if (JobBango.ApplicationBango__c != null) {
-                    Integer bango  = Integer.valueOf(JobBango.ApplicationBango__c.subString(1,9));
+                    bango = Integer.valueOf(JobBango.ApplicationBango__c.subString(1,9));
                     bangoList.add(bango);
-                }else {
-                    JobBango.ApplicationBango__c = 'A00000000';
                 }
 
             }
             System.debug(bangoList);
             bangoList.sort();
+            System.debug(bangoList.size()-1);
+ 
             Integer maxBango = bangoList[bangoList.size()-1];
                 for (Integer i = 0; i<jobapList.size(); i++) {
                     String a = 'A';
@@ -44,12 +51,13 @@ public with sharing class JobCan {
                 }
         }
 
-    }
+
+
 
     // 当Job_Application发生增删改的时候，根据Job_Application里的希望給料，算出改Candidate的所有的【平均希望給料】，
     // 保存到Candidate的平均希望給料里。
 
-    public static void JobCanAvg(Map<Id, Job_Application__c> newItems){
+    public static void JobCanAvg(){
 
         List<Job_Application__c> expectSalaryList = [select id,ExpectSalary__c from Job_Application__c where ExpectSalary__c = null];
         for (Job_Application__c es : ExpectSalaryList) {
@@ -60,32 +68,20 @@ public with sharing class JobCan {
         id canId;
         Double avgExs;
 
-        List<Job_Application__c> jobCanList = [select candidate__r.AverageSalary__c,candidate__c from Job_Application__c];
-
-        Set<ID> canIdList = new Set<ID>();
-
         List<candidate__c> canList = [select id,AverageSalary__c from candidate__c];
-        List<candidate__c> canup = new List<candidate__c>();
 
-        for (Id jobIdup : newItems.keyset()) {
-            canIdList.add(newItems.get(jobIdup).candidate__c);
-        }
-
-        for(Aggregateresult avgES : [select candidate__c, avg(ExpectSalary__c)avgEpSal from Job_Application__c where candidate__r.id in :canIdList group by candidate__c]){
+        for(Aggregateresult avgES : [select candidate__r.id, avg(ExpectSalary__c)avgEpSal from Job_Application__c where candidate__r.id != null group by candidate__r.id]){
                     avgExs = Double.valueOf(avgES.get('avgEpSal')); 
-                    System.debug(avgExs);
-                    for (candidate__c can : canList) {
-                        System.debug('can    ' + can);
-                        for (Id canIdUp : canIdList) {
-                            if (can.id == canIdUp) {
-                                can.AverageSalary__c = avgExs;
-                                canup.add(can);
-                            }
+                    canId = (ID)avgES.get('id');
+                    for (Candidate__c c : canList) {
+                        if (c.id.equals(canId)) {
+                            c.AverageSalary__c = avgExs;
+                            break;
                         }
-                    } 
+                    }
                 }
-                System.debug(canup);
-                Update canup;
+
+                Update canList;
         
         
           

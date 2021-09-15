@@ -8,15 +8,15 @@ public with sharing class JobApplicationTriggerHandler extends TriggerHandlerAda
     }
 
     public override void afterInsert(Map<Id, SObject> newItems) {
-        JobCan.JobCanAvg((Map<Id, Job_Application__c>)newItems);       
+        JobCan.JobCanAvg();       
     }
 
     public override void afterUpdate(Map<Id, SObject> newItems, Map<Id, SObject> oldItems) {
-        JobCan.JobCanAvg((Map<Id, Job_Application__c>)newItems);       
+        JobCan.JobCanAvg();       
     }
 
     public override void afterDelete(Map<Id, SObject> newItems) {
-        JobCan.JobCanAvg((Map<Id, Job_Application__c>)newItems);       
+        JobCan.JobCanAvg();       
     }
 
 
