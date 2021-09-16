@@ -11,8 +11,9 @@ public with sharing class PositionBatchPlus implements Database.Batchable<sObjec
     }
 
     public void execute(Database.BatchableContext bc, List<position__c> records){   
+        Set<ID> cID = new Set<ID>();
         for (Position__c p : records) {
-            Set<ID> cID = new Set<ID>();
+            // Set<ID> cID = new Set<ID>();
            if(p.Job_Application__r.size() > 0){
                 for (Job_Application__c ja : p.Job_Application__r) {
                     cID.add(ja.Candidate__c);
@@ -20,7 +21,6 @@ public with sharing class PositionBatchPlus implements Database.Batchable<sObjec
            }
            if (cID.size() > 1) {
                for (Job_posting__c jp : p.Job_posting__r) {
-                //    System.debug(jp.Employment_Website__r.Web_Address__c);
                 urls.add(jp.Employment_Website__r.Web_Address__c);
                }
            } 
@@ -28,7 +28,6 @@ public with sharing class PositionBatchPlus implements Database.Batchable<sObjec
     }
 
     public void finish(Database.BatchableContext bc){
-        System.debug('Finish');
         for (String url : urls) {
             System.debug(url);
         }
