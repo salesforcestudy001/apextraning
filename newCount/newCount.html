@@ -1,0 +1,31 @@
+<template>
+    <div class="slds-m-around_medium" > 
+        <div id="menu" style="background-color:#FFD700;height:100px;width:100px;float:left;font-size:15px;">
+        <lightning-input name='firstNumber' label="第一位数" onchange={handleChange} ></lightning-input></div>>
+
+        <div id="menu1" style="background-color:#ff0022;height:100px;width:100px;float:left;font-size:15px;">
+        <lightning-input name='secondNumber' label="第二位数" onchange={handleChange}></lightning-input></div>
+
+        <div id="menu2" style="background-color:#008cff;height:100px;width:100px;float:left;font-size:px;">
+        <lightning-input name='finalNumber' label="结果" onchange={handleChange}></lightning-input></div>>
+
+        <div id="menu3" style="background-color:#00ff62;height:100px;width:100px;float:left;">
+        <lightning-input name='endNumber' label="输入值" onchange={handleChange}></lightning-input></div>></br>
+         
+
+     
+
+        
+        <template if:true={finalNumber}>
+            <div class="slds-m-vertical_medium">
+                <p class="slds-m-top_medium" style="font-family:arial;color:rgb(38, 0, 255);font-size:50px;" > you are true!</p>
+            </div>
+            </div>
+        </template>
+        <template if:false={finalNumber}>
+            <div class="slds-m-vertical_medium">
+                <p class="slds-m-top_medium" style="font-family:arial;color:rgb(255, 0, 0);font-size:50px;" > you are fales!</p>
+            </div>
+        </template>
+    </div>
+</template>
