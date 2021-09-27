@@ -1,0 +1,20 @@
+<!-- <template>
+    <template class="b" for:each={cons} for:item="c">
+        <div class="a" key={c.id}>
+             <c-child-component namee={c.name} phonee={c.phone} emaill={c.email}></c-child-component> 
+            <c-child-component con = {c}></c-child-component>
+        </div>
+    </template>
+</template> -->
+<!-- helloForEach.html -->
+<template>
+    <lightning-card title="HelloForEach" icon-name="custom:custom14">
+        <ul class="slds-m-around_medium">
+            <template for:each={cons} for:item="contact">
+                <li key={contact.id}>
+                    <c-child-component contact = {contact}></c-child-component> 
+                </li>
+            </template>
+        </ul>
+    </lightning-card>
+</template>
