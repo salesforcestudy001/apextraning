@@ -1,0 +1,19 @@
+<template>
+    <div >
+        <lightning-input style="width:170px" class="input" name='number01' label="First Number" onchange={handleChange}></lightning-input>
+        <p class="puls" > + </p>
+        <lightning-input style="width:170px" class="input" name='number02' label="Second Number" onchange={handleChange}></lightning-input>
+        <p class="puls"> = </p>
+        <lightning-input style="width:170px" class="input" name='result01' label="Result" onchange={handleChange}></lightning-input>
+        <template if:true={isRight}>
+            <div class="slds-text-color_success">
+                <p class="puls">答案正确</p>
+            </div>
+        </template>
+        <template if:false={isRight}>
+            <div class="slds-text-color_error">
+                <p class="puls">答案错误</p>
+            </div>
+        </template>
+    </div>
+</template>

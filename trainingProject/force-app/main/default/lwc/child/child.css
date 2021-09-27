@@ -1,0 +1,12 @@
+/* child.css */
+h1 {
+    font-size: large;
+}
+:host {
+    display: block;
+    background: lightgray;
+}
+
+:host(.active) {
+    background-color: lightgreen;
+} 
