@@ -1,0 +1,20 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-09-27 14:53:45
+ * @LastEditTime: 2021-09-27 16:00:19
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \trainingProject\force-app\main\default\lwc\parentComponent\parentComponent.html
+-->
+<template>
+    <lightning-card title="0927HomeWork" icon-name="custom:custom14">
+        <ul class="slds-m-around_medium">
+            <template for:each={contacts} for:item="contact">
+                <li key={contact.Id}>
+                    <c-child-component contact={contact}>
+                    </c-child-component>
+                </li>
+            </template>
+        </ul>
+    </lightning-card>
+</template>
