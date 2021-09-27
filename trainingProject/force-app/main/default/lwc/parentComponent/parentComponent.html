@@ -1,7 +1,9 @@
 <template>
+    <ul class="slds-m-around_medium">
         <template for:each={contacts} for:item="contact">
-            <span key={contact.Id}>
+            <li key={contact.Id}>
                 <c-child-component temp={contact}></c-child-component>
-            </span>
+            </li>
         </template>
+    </ul>
 </template>
