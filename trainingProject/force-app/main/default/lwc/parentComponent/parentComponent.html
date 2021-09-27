@@ -1,0 +1,9 @@
+<template>
+    <template for:each={contacts} for:item="c">
+        <span key={c.id}> 
+            <c-child-Component idd={c.Id}></c-child-Component>
+            <c-child-Component namee={c.Name}></c-child-Component>
+            <c-child-Component titlee={c.Title}></c-child-Component>
+        </span>
+    </template>
+</template>

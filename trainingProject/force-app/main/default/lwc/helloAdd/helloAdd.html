@@ -1,0 +1,13 @@
+<template>
+    <lightning-input class="input" style="width:170px" name="number1" onchange={handleChange}></lightning-input>
+    <p class="puls"> + </p>
+    <lightning-input class="input" style="width:170px" name="number2" onchange={handleChange}></lightning-input>
+    <p class="puls"> = </p>
+    <lightning-input class="input" style="width:170px" name="result" onchange={handleChange}></lightning-input>
+    <template if:true={isRight}>
+        <span><div class="puls">答案正确</div></span>
+    </template>
+    <template if:false={isRight}>
+        <span><div class="puls">答案错误</div></span>
+    </template>
+</template>
