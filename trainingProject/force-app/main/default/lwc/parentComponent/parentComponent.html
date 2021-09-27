@@ -1,5 +1,7 @@
 <template>
-    <c-child-wrapper>
-        <c-child-Component contact={contact}></c-child-Component>
-    </c-child-wrapper>
+        <template for:each={contacts} for:item="contact">
+            <span key={contact.Id}>
+                <c-child-component temp={contact}></c-child-component>
+            </span>
+        </template>
 </template>
