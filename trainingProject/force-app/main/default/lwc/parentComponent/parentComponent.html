@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title="HelloForEach" icon-name="custom:custom14">
+        <ul>
+            <template for:each={contactsParent} for:item="contact">
+                
+                <li key={contact.Id}>
+                    <c-child-component contact = {contact}></c-child-component>
+                </li>
+            </template>
+        </ul>
+    </lightning-card>
+</template>
