@@ -1,0 +1,16 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-09-30 11:13:55
+ * @LastEditTime: 2021-09-30 13:41:39
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \trainingProject\force-app\main\default\lwc\loginParent\loginParent.html
+-->
+<template>
+    <c-login-child>
+        <lightning-input label="Username" slot="userName" class="username"></lightning-input>
+        <lightning-input label="Password" slot="password" class="password"></lightning-input>
+        <lightning-button label="Login" slot="loginButton" class="loginButton" onclick={clickHandler}></lightning-button>
+        <lightning-input label= "Remember?" type="checkbox" slot="remember"></lightning-input>
+    </c-login-child>
+</template>

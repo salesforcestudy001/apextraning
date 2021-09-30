@@ -1,0 +1,18 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-09-30 11:13:43
+ * @LastEditTime: 2021-09-30 13:39:19
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \trainingProject\force-app\main\default\lwc\loginChild\loginChild.html
+-->
+<template>
+    <slot name="userName"></slot>
+    <div>字母开头，允许5-16字符，允许字母数字下划线</div>
+    <slot name="password"></slot>
+    <div>允许5-16字符，允许字母数字</div>
+    <slot name="loginButton"></slot>
+    <div>写完点哪个你自己知道吧？</div>
+    <slot name="remember"></slot>
+    <div>人家才不要记住你呢</div>
+</template>
