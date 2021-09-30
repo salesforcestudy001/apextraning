@@ -2,11 +2,11 @@
 h1 {
     font-size: large;
 }
-:host {
+/* :host {
     display: block;
     background: lightgray;
 }
 
 :host(.active) {
     background-color: lightgreen;
-} 
+}  */
