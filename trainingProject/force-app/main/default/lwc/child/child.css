@@ -1,0 +1,24 @@
+.userName{
+    width: 300px;
+    margin: 0 auto;
+}
+.userPassword{
+    width: 300px;
+    margin: 0 auto;
+}
+.loginButton{
+    margin-top: 20px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.wsyhk{
+    width: 450px;
+    border: 2px solid pink;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+.dd{
+    color: cornflowerblue;
+    font-size: 30px;
+    text-align: center;
+}
