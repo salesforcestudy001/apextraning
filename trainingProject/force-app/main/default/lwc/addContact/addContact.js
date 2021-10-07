@@ -1,5 +1,5 @@
 import { LightningElement, track } from 'lwc';
-import { con } from 'c/con';
+import { cont } from 'c/cont';
 
 const columns = [
     { label: 'ID', fieldName: 'Id' },
