@@ -1,0 +1,31 @@
+<!-- sldsValidatorIgnore -->
+<!--
+ * @Author: your name
+ * @Date: 2021-10-07 12:06:32
+ * @LastEditTime: 2021-10-07 13:03:28
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \trainingProject\force-app\main\default\lwc\addContact\addContact.html
+-->
+<template>
+    <div>
+        <lightning-datatable
+            key-field="id"
+            data={contacts}
+            columns={columns}>
+        </lightning-datatable>
+    </div>
+    <lightning-layout>
+        <lightning-layout-item>
+            <lightning-button label="ADD+" onclick={addHandler}></lightning-button>
+        </lightning-layout-item>
+        <lightning-layout-item flexibility="grow"></lightning-layout-item>
+        <lightning-layout-item>
+            <p>**一共有 {conLength} 条数据</p>
+        </lightning-layout-item>
+        <lightning-layout-item flexibility="grow"></lightning-layout-item>
+        <lightning-layout-item>
+            <lightning-button label="MINUS-"  onclick={minusHandler}></lightning-button>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>
