@@ -28,7 +28,7 @@ export default class AddContact extends LightningElement {
     addHandler(){
         console.log("添加一条记录！");
         let qs=this.template.querySelector("lightning-datatable");
-        var addRecord = con();
+        var addRecord = cont();
         addRecord.Id=this.contacts.length+1;
         this.contacts.push(addRecord);
         qs.data=this.contacts;
