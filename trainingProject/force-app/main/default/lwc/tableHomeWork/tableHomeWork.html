@@ -6,7 +6,39 @@
                 columns={columns}>
         </lightning-datatable>
     </div> 
-    <div>
-        <lightning-button variant="brand" label="Add a Line" title="Primary action" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
-    </div> 
+
+
+    <lightning-button label="Edit" onclick={showModal} class="edit"></lightning-button>
+    <template if:true={show}>
+    <!-- Modal 标准代码部分 -->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+            <header class="slds-modal__header">
+            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+            <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+            </svg>
+            <span class="slds-assistive-text">Close</span>
+            </button>
+            <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Edit</h2>         
+            </header>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+            
+                <div class = "input_cus">
+                    <lightning-input  name="name" placeholder="Name: "></lightning-input>
+                    <lightning-input  name="title" placeholder="Title: "></lightning-input>
+                    <lightning-input  name="delete" placeholder="删除ID为："></lightning-input>
+                 </div>
+            </div>
+            <footer class="slds-modal__footer">
+                <div class = "but_add_delete">
+                    <lightning-button variant="brand" label="Add a Line" title="Primary action" onclick={AddLine} class="slds-m-left_x-small"></lightning-button>
+                    <lightning-button variant="destructive" label="Delete a Line" title="Destructive action" onclick={DeleteLine} class="slds-m-left_x-small"></lightning-button>
+                    <lightning-button label="キャンセル" onclick={showModal} class="cancel"></lightning-button>
+                </div> 
+            </footer>
+            </div>
+            </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
 </template>
