@@ -1,5 +1,5 @@
 import { LightningElement, track } from 'lwc';
-import { con } from 'c/con';
+import { cont } from 'c/cont';
 
 const columns = [
     { label: 'ID', fieldName: 'Id' },
@@ -28,7 +28,7 @@ export default class AddContact extends LightningElement {
     addHandler(){
         console.log("添加一条记录！");
         let qs=this.template.querySelector("lightning-datatable");
-        var addRecord = con();
+        var addRecord = cont();
         addRecord.Id=this.contacts.length+1;
         this.contacts.push(addRecord);
         qs.data=this.contacts;
