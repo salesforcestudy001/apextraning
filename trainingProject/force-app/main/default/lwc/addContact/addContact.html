@@ -1,0 +1,10 @@
+<template>
+    <div style="height: 300px;">
+        <lightning-datatable 
+            key-field="id"
+            data={data}
+            columns={columns}>
+        </lightning-datatable>
+    </div>
+    <lightning-button  label="add"  onclick={handleAdd} class="slds-m-left_x-small"></lightning-button>  
+</template>
