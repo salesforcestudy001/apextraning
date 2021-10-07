@@ -1,14 +1,17 @@
 import { LightningElement } from 'lwc';
 
 const columns = [
+
     { label: 'Name', fieldName: 'name', type: 'text'},
     { label: 'Email', fieldName: 'email', type: 'email'},
     { label: 'Phone', fieldName: 'phone', type: 'phone'},
     { label: 'Country', fieldName: 'country', type: 'text'}
     // { label: 'Time', fieldName: 'time', type: 'date' }
+    
 ];
 
 class contact{
+
     constructor(name,email,phone,country){
         this.name = name;
         this.email = email;
@@ -16,11 +19,13 @@ class contact{
         this.country = country;
         // this.time = time;
     }
+
 }
 const contact01 = new contact("Amy","Amy@cloudhub.com","2352235235","LA");
 const contact02 = new contact("Betty","Betty@cloudhub.com","2352235236","NY");
 
 export default class DataTable extends LightningElement {
+
     contacts = [contact01,contact02];
     columns = columns;
     name_temp = "name" + Math.random();
@@ -48,8 +53,6 @@ export default class DataTable extends LightningElement {
         // get this label
         let table_cus = this.template.querySelector("lightning-datatable");
         table_cus.data = this.contacts;
-    }
-
-
-        
+    }     
+    
 }
