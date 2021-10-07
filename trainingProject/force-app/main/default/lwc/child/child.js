@@ -1,7 +1,4 @@
-import LastPasswordChangeDate from '@salesforce/schema/User.LastPasswordChangeDate';
-import Username from '@salesforce/schema/User.Username';
 import { LightningElement ,api} from 'lwc';
-
 export default class Child extends LightningElement {
     @api
     login(){
