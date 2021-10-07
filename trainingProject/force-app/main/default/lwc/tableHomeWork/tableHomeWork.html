@@ -1,0 +1,12 @@
+<template>
+    <div style="height: 300px;">
+        <lightning-datatable
+                key-field="id"
+                data={constacts}
+                columns={columns}>
+        </lightning-datatable>
+    </div> 
+    <div>
+        <lightning-button variant="brand" label="Add a Line" title="Primary action" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+    </div> 
+</template>
