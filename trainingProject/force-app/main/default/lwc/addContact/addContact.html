@@ -1,0 +1,17 @@
+<template>
+    <div>
+        <lightning-datatable 
+        key-field="id" 
+        data={contacts}
+        columns={columns}>
+        </lightning-datatable>
+    </div>
+   
+        <lightning-layout-item>
+            <lightning-button label="+" onclick={addHandler}></lightning-button>
+        </lightning-layout-item>
+        <lightning-layout-item>
+            <lightning-button label="-"  onclick={minHandler}></lightning-button>
+        </lightning-layout-item>
+    
+</template>
