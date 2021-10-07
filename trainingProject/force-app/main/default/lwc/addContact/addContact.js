@@ -15,6 +15,7 @@ export default class AddContact extends LightningElement {
                 name:'aaaaaa',
                 phone:123456,
                 email:'123456qq.com',
+                
             },
         ];
         columns = columns;
