@@ -1,0 +1,9 @@
+<template>
+    <lightning-datatable
+          key-field="id"
+          data={contacts}
+          columns={columns}>
+    </lightning-datatable>
+    <lightning-button label="追加" title="add" onclick={onclickAdd}></lightning-button>
+    <lightning-button label="削除" title="delete" onclick={onclickDelete}></lightning-button>
+</template>
