@@ -1,11 +1,18 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement } from 'lwc';
 import { cont } from 'c/cont';
+import lbID from '@salesforce/label/c.myID';
+import lbNAME1 from '@salesforce/label/c.myName1';
+import lbTITLE from '@salesforce/label/c.myTITLE';
 
-const columns = [
+/*const columns = [
     { label: 'ID', fieldName: 'Id' },
     { label: 'NAME', fieldName: 'Name' },
     { label: 'TITLE', fieldName: 'Title'}
-];
+];*/
+const columns = [
+    { label: lbID, fieldName: 'Id' },
+    { label: lbNAME1, fieldName: 'Name' },
+    { label: lbTITLE, fieldName: 'Title'}];
 export default class AddContact extends LightningElement {
     contacts=[
         {
