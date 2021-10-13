@@ -10,6 +10,7 @@ export default class Paginatorsub extends LightningElement {
     };
     clickHandler(){
         let e=new CustomEvent('previous',{ detail: this.theContact });
+        // let e=new CustomEvent('previous',{ detail: a='ss' });
         this.dispatchEvent(e);
     }
 }
