@@ -1,0 +1,44 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-10-14 14:11:46
+ * @LastEditTime: 2021-10-14 16:21:54
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \trainingProject\force-app\main\default\lwc\firstLogin\firstLogin.html
+-->
+<template>
+    <div class="box">
+        <img class="image_box" 
+         src={logo}
+         alt="salesforce-logo-corporate">
+    <h1 class="headTitle">Sign up for your Salesforce Developer Edition</h1>
+    <p class="bodyTitle">A full-featured copy of the Platform, for free</p>
+    <template if:true={isSuccess}>
+    </template>
+    <lightning-record-edit-form 
+        object-api-name={objectApiName}
+        onsuccess={handleSuccess}>
+            <lightning-messages></lightning-messages>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-input-field field-name="First_Name__c"></lightning-input-field>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-input-field field-name="Last_Name__c"></lightning-input-field>
+                </div>  
+            </div>
+            <lightning-input-field field-name="Email__c"></lightning-input-field> 
+            <lightning-input-field field-name="Role__c"></lightning-input-field> 
+            <lightning-input-field field-name="Company__c"></lightning-input-field> 
+            <lightning-input-field field-name="Country__c"></lightning-input-field>
+            <lightning-input-field field-name="Postal_Code__c"></lightning-input-field>
+            <lightning-input-field field-name="Username__c" class='username'></lightning-input-field>  
+            <div>
+                <span class="legalterms">By registering, you confirm you have read and agree to the <a href="https://trailblazer.me/terms" target="_blank"> Terms of Use</a> and the <a href="https://www.salesforce.com/content/dam/web/en_us/www/documents/legal/salesforce_Developer_MSA.pdf" target="_blank">Master Subscription Agreement</a> and to the storing and processing of your personal data by Salesforce as described in the <a href="https://www.salesforce.com/company/privacy/" target="_blank"> Privacy Statement</a>, including use for marketing purposes.</span>
+            </div>
+            <div class="slds-align_absolute-center slds-p-around_medium">
+                <lightning-button class="slds-m-left_x-small" label="Sign Me Up" type="submit" variant="brand" onclick={handleSave}></lightning-button>
+            </div>
+    </lightning-record-edit-form>
+    </div>   
+</template>
