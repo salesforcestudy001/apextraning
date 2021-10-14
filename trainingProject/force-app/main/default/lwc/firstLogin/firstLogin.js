@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-14 14:11:46
- * @LastEditTime: 2021-10-14 16:43:40
+ * @LastEditTime: 2021-10-14 17:03:40
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \trainingProject\force-app\main\default\lwc\firstLogin\firstLogin.js
@@ -15,10 +15,13 @@ export default class FirstLogin extends LightningElement {
     temp=[];
     @wire (getRecords)Records;
     handleSave(){
+        console.log('1');
         const inputField = this.template.querySelector('.username');
-        if (Records) {
-            for (let index = 0; index < Records.length; index++) {
-                if (Records[index].Username__c=inputField.value) {
+        if (this.Records) {
+            console.log(this.Records.data.length);
+            for (let index = 0; index < this.Records.data.length; index++) {
+                console.log(index);
+                if (this.Records[index].data.Username__c==inputField.value) {
                     alert("重复的Username禁止注册");
                     inputField.reset();
                     break;
