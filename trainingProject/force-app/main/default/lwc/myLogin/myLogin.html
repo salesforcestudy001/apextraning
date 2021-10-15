@@ -1,0 +1,54 @@
+<template>
+    <div class="one">
+    <div class=" slds-align_absolute-center slds-p-around_medium">
+        <img src={imgurl}>
+    </div>
+    <div class=" slds-align_absolute-center slds-p-around_medium">
+    <h1>Sign up for your Salesforce Developer Edition</h1>
+    </div>
+    <div class="slds-align_absolute-center slds-p-around_medium">
+    <p>A full-featureed copy of the zplatform,for free</p>
+   </div>
+   <template if:true={isSuccess}>
+</template>
+
+<lightning-record-edit-form 
+    record-id={recordId}
+    object-api-name={objectApiName}
+    onsuccess={signSuccess}
+    onerror={errorMessage}>
+        <lightning-messages></lightning-messages>
+        <div class="slds-m-around_medium" style="width:500px">
+        <lightning-input-field field-name="First_Name__c" value="Your frist name"  ></lightning-input-field>
+        <lightning-input-field field-name="Last_Name__c" value="Your Last name" ></lightning-input-field>
+        <lightning-input-field field-name="Email__c" value="Your email address"></lightning-input-field> 
+        <lightning-input-field field-name="Role__c" ></lightning-input-field> 
+        <lightning-input-field field-name="Company__c" value="Company Name "></lightning-input-field> 
+        <lightning-input-field field-name="Country__c" ></lightning-input-field>
+        <lightning-input-field field-name="Postal_Code__c" value="Your Postal Code "></lightning-input-field>
+        <lightning-input-field field-name="Username__c"  value="Ex.name@yourcompany.com "></lightning-input-field>  
+        </div>
+        <div>
+            <span>By registering, you confirm you have read and agree to the 
+            <a href="https://trailblazer.me/resource/1618967075000/TermsOfUse_en_US" target="_blank"> Terms of Use</a> and the 
+            <a href="https://www.salesforce.com/content/dam/web/en_us/www/documents/legal/salesforce_Developer_MSA.pdf" target="_blank">
+            Master Subscription Agreement</a> and to the storing and processing of your personal data by Salesforce as described in the
+            <a href="https://www.salesforce.com/company/privacy/" target="_blank"> Privacy Statement</a>, including use for marketing purposes.</span>
+        </div>
+        <div class="slds-align_absolute-center slds-p-around_medium">
+        <lightning-button type="submit" variant="brand" label="sign me up" title="Brand action" ></lightning-button>
+         </div>
+         <div class="slds-align_absolute-center slds-p-around_medium">
+        <P>Already have a Salesforce Developer Environment?</P>
+        </div>
+        <div class="slds-align_absolute-center slds-p-around_medium">
+        <lightning-button variant="base" label="Log in" title="Base action" onclick={logSuccess}></lightning-button>
+        </div>
+    </lightning-record-edit-form>
+
+</div>
+    
+</template>
+
+
+

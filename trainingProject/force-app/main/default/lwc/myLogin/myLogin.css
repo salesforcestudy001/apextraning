@@ -1,0 +1,14 @@
+.one{
+    padding: 50px 36px;
+    margin: 8% auto;
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid rgba(24,24,24,.04);
+    box-shadow: 0 0 2px 0 rgb(24 24 24 / 8%), 0 2px 4px 1px rgb(24 24 24 / 16%);
+    min-height: 582px;
+    max-width: 600px;
+}
+h1{
+    font-size: large;
+    font-weight:bolder;
+}
