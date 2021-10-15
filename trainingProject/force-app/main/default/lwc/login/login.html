@@ -1,0 +1,48 @@
+<template>
+    <template if:true={showRe}>
+        <div>
+            <lightning-input type="text" name="UserName" placeholder="Name:"></lightning-input>
+        </div>
+        <div>
+            <lightning-input type="text" name="Email" placeholder="Email:"></lightning-input>
+        </div>
+        <div>
+            <lightning-combobox
+                name="None"
+                label="Country"
+                value={value}
+                placeholder="Select a Country"
+                options={}
+                onchange={getCountry} 
+                onfocus={getFields}></lightning-combobox>
+        </div>
+        <div>
+            <lightning-button variant="brand" label="Add" title="Add" onclick={registerYuzi} class="slds-m-left_x-small"></lightning-button>
+        </div>
+        <div>
+            <lightning-button variant="brand" label="Cancel" title="Cancel" onclick={Re} class="slds-m-left_x-small"></lightning-button>
+        </div>
+    </template>
+    <template if:true={showLo}>
+        <div>
+            <lightning-input type="text" name="UserNameLo" placeholder="Name:"></lightning-input>
+        </div>
+        <div>
+            <lightning-input type="text" name="EmailLo" placeholder="Email:"></lightning-input>
+        </div>
+        <div>
+            <lightning-button variant="brand" label="Confirm" title="Confirm" onclick={logintoYuzi} class="slds-m-left_x-small"></lightning-button>
+        </div>
+        <div>
+            <lightning-button variant="brand" label="Cancel" title="Cancel" onclick={Lo} class="slds-m-left_x-small"></lightning-button>
+        </div>
+    </template>
+    <template if:true={show}>
+        <div>
+            <lightning-button variant="brand" label="Register" title="Register" onclick={Re} class="slds-m-left_x-small"></lightning-button>
+        </div>
+        <div>
+            <lightning-button variant="brand" label="Login" title="Login" onclick={Lo} class="slds-m-left_x-small"></lightning-button>
+        </div>
+    </template>
+</template>
