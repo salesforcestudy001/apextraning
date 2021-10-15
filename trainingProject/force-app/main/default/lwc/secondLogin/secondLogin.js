@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-14 14:11:46
- * @LastEditTime: 2021-10-15 14:22:11
+ * @LastEditTime: 2021-10-15 14:32:13
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \trainingProject\force-app\main\default\lwc\firstLogin\firstLogin.js
@@ -82,19 +82,39 @@ export default class FirstLogin extends LightningElement {
         if (this.Records) {
             for (let index = 0; index < this.Records.length; index++) {
                 if (this.Records[index].Username__c==inputField.value) {
-                    alert("重复的Username禁止注册");
+                    this.dispatchEvent(
+                        new ShowToastEvent({
+                            title: 'Sign Up Foibidden',
+                            message: '重复的Username禁止注册',
+                            variant: 'warning',
+                        }),
+                    );
                     return "重复的Username禁止注册";
                 } 
             }
         }
         //console.log(this.email);
         if(!emailrule.exec(this.email)){
-            alert("邮箱格式错误");
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Sign Up Foibidden',
+                    message: '邮箱格式错误',
+                    variant: 'warning',
+                }),
+            );
+            //alert("邮箱格式错误");
             return "邮箱格式错误";
         }
         if(!usernamerule.exec(this.username)){
-            console.log(this.username);
-            alert("用户名格式错误");
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Sign Up Foibidden',
+                    message: '用户名格式错误',
+                    variant: 'warning',
+                }),
+            );
+            //console.log(this.username);
+            //alert("用户名格式错误");
             return "用户名格式错误";
         }
         const fields = {Name:this.name,
