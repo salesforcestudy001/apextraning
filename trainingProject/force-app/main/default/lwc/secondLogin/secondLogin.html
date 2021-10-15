@@ -1,0 +1,99 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-10-14 14:11:46
+ * @LastEditTime: 2021-10-15 11:06:16
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \trainingProject\force-app\main\default\lwc\firstLogin\firstLogin.html
+-->
+<template>
+    <div class="box">
+        <img class="image_box" 
+         src={logo}
+         alt="salesforce-logo-corporate">
+    <h1 class="headTitle">Sign up for your Salesforce Developer Edition</h1>
+    <p class="bodyTitle">A full-featured copy of the Platform, for free</p>
+    <lightning-messages></lightning-messages>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-input 
+                    type="text" 
+                    label="First Name" 
+                    class="firstname" 
+                    placeholder="Your First Name" 
+                    onchange={handlefirstname}
+                    required
+                    oninvalid={handleinvalid} ></lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-input 
+                    type="text" 
+                    label="Last Name" 
+                    class="lastname" 
+                    placeholder="Your Last Name" 
+                    onchange={handlelastname}
+                    required
+                    oninvalid={handleinvalid} ></lightning-input>
+                </div>  
+            </div>
+            <lightning-input 
+            type="text" 
+            label="Email" 
+            class="email" 
+            placeholder="Your Email" 
+            onchange={handleemail}
+            required
+            oninvalid={handleinvalid} ></lightning-input> 
+
+            <lightning-combobox
+            name="Role"
+            label="Role"
+            placeholder="Your Job Role"
+            options={roleoptions} 
+            onchange={handleRole} 
+            required
+            oninvalid={handleinvalid} ></lightning-combobox>
+
+            <lightning-input
+            type="text" 
+            label="Company" 
+            class="company" 
+            placeholder="Your Company" 
+            onchange={handlecompany}
+            required
+            oninvalid={handleinvalid} ></lightning-input> 
+
+            <lightning-input 
+            type="text" 
+            label="Country" 
+            placeholder="Your Country" 
+            class="country" 
+            onchange={handlecountry}
+            required
+            oninvalid={handleinvalid} ></lightning-input>
+
+            <lightning-input 
+            type="number" 
+            label="Postal Code" 
+            class="postalcode" 
+            placeholder="Your Postal Code" 
+            onchange={handlepostalcode}
+            required
+            oninvalid={handleinvalid} ></lightning-input>
+
+            <lightning-input 
+            type="text"
+            label="Username" 
+            class='username' 
+            placeholder="Ex.name@yourcompany.com" 
+            onchange={handleusername}
+            required
+            oninvalid={handleinvalid} ></lightning-input>  
+            <div>
+                <span class="legalterms">By registering, you confirm you have read and agree to the <a href="https://trailblazer.me/terms" target="_blank"> Terms of Use</a> and the <a href="https://www.salesforce.com/content/dam/web/en_us/www/documents/legal/salesforce_Developer_MSA.pdf" target="_blank">Master Subscription Agreement</a> and to the storing and processing of your personal data by Salesforce as described in the <a href="https://www.salesforce.com/company/privacy/" target="_blank"> Privacy Statement</a>, including use for marketing purposes.</span>
+            </div>
+            <div class="slds-align_absolute-center slds-p-around_medium">
+                <lightning-button class="slds-m-left_x-small" label="Sign Me Up" type="submit" variant="brand" onclick={handleSave}></lightning-button>
+            </div>
+    </div>   
+</template>
