@@ -1,0 +1,11 @@
+.halfe{
+    width: 300px;
+    padding-right: 20px;
+}
+.first{
+    display: flex;
+    flex-direction: row;
+}
+.bottom{
+    padding-bottom: 20px;
+}

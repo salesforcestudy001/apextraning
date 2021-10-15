@@ -1,0 +1,32 @@
+<template>
+    <lightning-card title="ptxxCreateRecord">
+        <div class="first">
+            <lightning-input class="halfe" placeholder="Your First Name" label="FirstName" onchange={handleFirst}></lightning-input>
+            <lightning-input class="halfe" placeholder="Your Last Name" label="LastName" onchange={handleLast}></lightning-input>
+        </div>
+         <lightning-input placeholder="Your Email address" label="Email" onchange={handleEmail}></lightning-input> 
+
+        <lightning-combobox
+                name="role"
+                label="role"
+                value={value}
+                placeholder="Select Role"
+                options={options}
+                onchange={handleChange} 
+                onfocus={o}></lightning-combobox>
+        <lightning-input placeholder="Company Name" label="Company" onchange={handleCompany}></lightning-input>   
+        <lightning-combobox
+                name="Country"
+                label="Country"
+                value={value}
+                placeholder="Select Country"
+                options={cOptions}
+                onchange={handleChangeCountry}
+                onfocus={oo} ></lightning-combobox>
+              
+        <lightning-input placeholder="Your postal code" label="Postal Code" onchange={handlePCode}></lightning-input>
+        <lightning-input class="bottom" placeholder="Ex.name@yourcompany.com" label="Username" onchange={userNameChange}></lightning-input>
+
+        <lightning-button label="Create Account" variant="brand" onclick={createAccount}></lightning-button>
+    </lightning-card>
+</template> 
