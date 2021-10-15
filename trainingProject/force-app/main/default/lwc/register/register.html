@@ -1,0 +1,37 @@
+<template>
+    
+    <div style="height: 200px; width:200px; display:table-cell;vertical-align:middle">
+        <img src={photo}>
+    </div>
+
+    <div> 
+    <strong style="font-size: large;">Sign up for your Salesforce Developer Edition</strong>
+    </div>
+
+        <!-- <lightning-record-form 
+            object-api-name={userslogin__cApiName}
+            fields={fields}
+            onsuccess={handleSuccess}>
+        </lightning-record-form> -->
+
+        <lightning-record-edit-form
+            object-api-name={userslogin__cApiName}
+            onsuccess={save}>
+                <lightning-input-field field-name={FirstName}></lightning-input-field>
+                <lightning-input-field field-name={LastName}></lightning-input-field>
+                <lightning-input-field field-name={Email}></lightning-input-field>
+                <lightning-input-field field-name={Role}></lightning-input-field>
+                <lightning-input-field field-name={Company}></lightning-input-field>
+                <lightning-input-field field-name={Country}></lightning-input-field>
+                <lightning-input-field field-name={Postal_Code}></lightning-input-field>
+                <lightning-input-field field-name={Username}></lightning-input-field>
+
+                <div class="slds-var-m-top_medium">
+                    <lightning-button variant="brand" value=" " label="Clean" onclick={clean}></lightning-button>
+                    <lightning-button variant="brand" type="submit" label="Save" ></lightning-button>
+                </div>
+        </lightning-record-edit-form>
+        
+
+    
+</template>
