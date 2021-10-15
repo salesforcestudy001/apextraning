@@ -1,0 +1,44 @@
+<template>
+<div class="body">
+    <div class="slds-align_absolute-center slds-m-vertical_medium">
+        <img src={trailheadLogoUrl} width="260">
+    </div>
+    <div class="slds-m-vertical_medium">
+        <h2 class="slds-align_absolute-center slds-text-heading_medium">Sign up for your Salesforce Developer Edition</h2>
+        <p class="slds-align_absolute-center slds-text-body_regular">A full-featured copy of the Platform, for free</p>
+    </div>
+    <lightning-record-edit-form 
+        record-id={recordId}
+        object-api-name="mysalesuser__c"
+        onerror={handleError}
+        onsuccess={handleSuccess}
+    >
+    <lightning-messages></lightning-messages>
+        <div>
+            <lightning-input-field field-name="First_Name__c" ></lightning-input-field>
+            <lightning-input-field field-name="Last_Name__c"></lightning-input-field>
+            <lightning-input-field field-name="Email__c"></lightning-input-field> 
+            <lightning-input-field field-name="Role__c"></lightning-input-field> 
+            <lightning-input-field field-name="Company__c"></lightning-input-field>
+            <lightning-input-field field-name="Country__c"></lightning-input-field> 
+            <lightning-input-field field-name="Postal_Code__c"></lightning-input-field> 
+            <lightning-input-field field-name="Username__c"></lightning-input-field> 
+        </div>
+        <div class="box1">
+            <lightning-button class="slds-align_absolute-center" label="Sign me up" type="submit" variant="brand" ></lightning-button>
+        </div>
+    </lightning-record-edit-form>
+    <div class="slds-m-vertical_medium">
+        <p class="slds-align_absolute-center slds-text-body_regular">By registering, you confirm you have read and agree to the Terms of Use and the Master Subscription Agreement and to the storing and processing of your personal data by Salesforce as described in the Privacy Statement, including use for marketing purposes.</p>
+    </div>
+    <div class="slds-m-vertical_medium">
+        <p class="slds-align_absolute-center slds-text-body_regular">Already have a Salesforce Developer Environment?</p>
+    </div>   
+    <div>
+        <lightning-button class="slds-align_absolute-center" label="Cancel" onclick={handleReset}></lightning-button>
+    </div>
+</div>
+
+
+
+</template>

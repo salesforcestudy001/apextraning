@@ -1,0 +1,50 @@
+<template>
+    <!-- <lightning-record-form
+        record-id={recordId}
+        object-api-name={objectApiName}
+        fields={fields}>
+    </lightning-record-form> -->
+    <template if:true={show}>
+
+    <lightning-record-view-form
+                record-id={recordId}
+                object-api-name="Account">
+        <div class="slds-grid">
+            <div class="slds-col slds-size_1-of-2">
+                <lightning-output-field field-name="Name"></lightning-output-field>
+                <lightning-output-field field-name="Phone"></lightning-output-field>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+                <lightning-output-field field-name="Industry"></lightning-output-field>
+                <lightning-output-field field-name="AnnualRevenue"></lightning-output-field>
+            </div>
+            <div> 
+                <lightning-button  label="edit" onclick={edit}></lightning-button>
+            </div>
+        </div>
+    </lightning-record-view-form>
+</template>
+    ------------------------------------------
+    <template if:false={show}>
+    <lightning-record-edit-form
+                record-id={recordId}
+                object-api-name="Account"
+                onsubmit={edit}>
+     <lightning-messages></lightning-messages>
+        <div class="slds-grid"></div>
+            <div class="slds-col slds-size_1-of-2">
+                <lightning-input-field field-name="Name"></lightning-input-field>
+                <lightning-input-field field-name="Phone"></lightning-input-field>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+                <lightning-input-field field-name="Industry"></lightning-input-field>
+                <lightning-input-field field-name="AnnualRevenue"></lightning-input-field>
+            </div>
+            <div> 
+                <lightning-button type="submit" variant="brand" label="保存" ></lightning-button>
+                <lightning-button type="cancel" label="取消" ></lightning-button>
+            </div>
+        </div>
+    </lightning-record-edit-form>
+</template>
+</template> 
