@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-14 14:11:46
- * @LastEditTime: 2021-10-15 14:32:13
+ * @LastEditTime: 2021-10-15 14:44:25
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \trainingProject\force-app\main\default\lwc\firstLogin\firstLogin.js
@@ -155,6 +155,7 @@ export default class FirstLogin extends LightningElement {
                     variant: 'success',
                 }),
             );
+            window.open('https://d5g00000a1lcteaz-dev-ed.lightning.force.com/lightning/r/UserScy__c/'+response.id+'/view','_blank');
         })
         .catch(error => {
             //console.log(JSON.stringify(error.body));
