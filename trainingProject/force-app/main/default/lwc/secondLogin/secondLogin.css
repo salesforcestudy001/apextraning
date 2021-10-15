@@ -51,3 +51,18 @@ img{
     line-height: 20px;
     display: block;
 }
+.textbottom{
+    margin-top: 8px;
+    margin-bottom: 24px;
+    color: rgba(11,11,11,1);
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 24px;
+    text-align: center;
+    margin: 0;
+    box-sizing: border-box;
+    border: 0 solid #e2e8f0;
+}
+.login{
+    text-align: center;
+}
