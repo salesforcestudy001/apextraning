@@ -1,0 +1,59 @@
+.image{
+    padding-top: 40px;
+    width:70px;
+    height:30px
+}
+.headline{
+    background-color:white;
+    opacity: 0.6;
+}
+.whole{
+    background-color:white;
+    opacity: 0.8;
+}
+.namealine{
+    width:500px;
+    float:left;
+}
+.emailtitle{
+    /* width:300px; */
+    float:left;
+}
+.roletitle{
+    width:200px;
+    float:left;
+}
+.companytitle{
+    /* width:300px; */
+    float:left;
+}
+.countrytitle{
+    width:200px;
+    float:left;
+}
+.postalcodetitle{
+    /* width:300px; */
+    float:left;
+}
+.usernametitle{
+    /* width:300px; */
+    float:left;
+}
+/* .btn{
+    vertical-align: middle;
+} */
+.btnsign{
+    /* text-align:center; */
+    /* vertical-align: middle; */
+    /* position: relative; */
+    padding-left: 400px;
+    float:left;
+}
+
+.btnlog{
+    /* text-align:center; */
+    /* vertical-align: middle; */
+    /* position: relative; */
+    padding-left: 60px;
+    float:left;
+}

@@ -1,0 +1,94 @@
+<template>
+    <!-- <lightning-card title="User" icon-name="custom:custom63">
+        <div class="slds-m-around_medium">
+            <template if:true={userList.data}>
+                <template for:each={userList.data} for:item="user">
+                    <p key={user.Id}>
+                        {user.Name}
+                        {user.First_Name__c}
+                    </p>
+                </template>
+            </template>
+        </div>
+    </lightning-card> -->
+
+    <div>
+
+        <div class="image">
+            <img src={imgurl}>
+        </div>
+
+        <div class = "headline">
+            <div>
+                <h1 align = "center">
+                    <strong>
+                        Sign up for your Salesforce Developer Edition &#128512;
+                    </strong>
+                </h1></br>
+            </div>
+    
+            <div>
+                <h2 align = "center">
+                    <!-- <strong> -->
+                        A full-featured copy of the Platform, for free
+                    <!-- </strong> -->
+                </h2>
+            </div>
+    </div>
+</div>
+
+    <div class = "whole">
+        
+            <lightning-record-edit-form object-api-name="UserZX__c" >   
+                <div>
+                    <lightning-input-field field-name="First_Name__c" type="text" value="Your first name" class = "namealine" onchange={firstnamehandleChange}></lightning-input-field>
+                    <lightning-input-field field-name="Last_Name__c" type = "text" value="Your last name" class = "namealine" onchange={lastnamehandleChange}></lightning-input-field>
+                </div>
+                <lightning-input-field field-name="Email__c" type = "email" value="Your email address" class = "emailtitle" onchange={emailhandleChange}></lightning-input-field>
+                <!-- role's lists -->
+                <!-- <lightning-input-field class = "roletitle"> -->
+                <div class = "roletitle">
+                    <lightning-combobox name="Roles__c"
+                                        label="Role*"
+                                        value = {rolevalue}
+                                        placeholder="Your job role"
+                                        options={role}
+                                        onchange={rolehandleChange}
+                                        required >
+                    </lightning-combobox>
+                        <p>Selected Role is: {rolevalue}</p>
+                </div>
+                <!-- </lightning-input-field> -->
+
+                <lightning-input-field field-name="Company__c" type="text" value="Company name" class = "companytitle" onchange={companyhandleChange}></lightning-input-field>
+
+                <!-- country's lists -->
+                <!-- <lightning-input-field field-name="Countries"> -->
+                <div class = "countrytitle">
+                    <lightning-combobox name="Countries__c"
+                                        label="Country*"
+                                        value = {countryvalue}
+                                        placeholder="Select Country"
+                                        options={country}
+                                        onchange={countryhandleChange}
+                                        required >
+                    </lightning-combobox>
+                        <p>Selected Country is: {countryvalue}</p>
+                </div>
+                <!-- </lightning-input-field> -->
+
+                <lightning-input-field field-name="Postal_Code__c" type="text" value= "Your postal code" class = "postalcodetitle" onchange={postalcodehandleChange}></lightning-input-field>
+                <lightning-input-field field-name="Username__c" type="email" value="Ex.name@yourcompany.com" class = "usernametitle" onchange={usernamehandleChange}></lightning-input-field>           
+    
+            </lightning-record-edit-form>
+    </div>
+
+    <div >
+    <!-- class = "btn"> -->
+
+        <lightning-button variant="brand" label="Signin" title="signin action" onclick={signin} class="btnsign"></lightning-button>
+        <!-- <span class="block"></span> -->
+        <lightning-button label="Login" title="login action" onclick={login} class="btnlog"></lightning-button>
+    
+    </div>
+</template>
