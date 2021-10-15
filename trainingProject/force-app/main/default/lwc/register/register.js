@@ -84,8 +84,8 @@ export default class Register extends LightningElement {
         // console.log(result);
         // this.id = result;
         console.log(result[0].Id);
-            
-            return result[0].Id;
+        window.open('https://d5g00000a1ll6eaj-dev-ed.lightning.force.com/lightning/r/userslogin__c/'+result[0].Id+'/view')
+    
         })
         
         // getUsername({})
@@ -99,24 +99,25 @@ export default class Register extends LightningElement {
         // this.getUId();
         // console.log(this.id)
         // refreshApex(this.id);
-
-        let uid = this.getUId();
         
 
         this.flag = true;
         this.HandanEmpty()
         if(this.flag == true){
             alert("Success");    
-
+            this.getUId();
             // console.log("Id: " + this.id[0].Id);
             // let users = this.UsernameList.data;
             // let id = users[0].Id;
-            console.log(uid);
+            // console.log(uid);
             
-            window.open('https://d5g00000a1ll6eaj-dev-ed.lightning.force.com/lightning/r/userslogin__c/'+uid+'/view')
+           
         }
+
+        
     }
-   
+
+
 
    
 
