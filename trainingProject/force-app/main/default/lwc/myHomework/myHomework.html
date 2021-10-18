@@ -1,0 +1,31 @@
+<template>
+    <div class="body">
+    <div class="slds-align_absolute-center slds-m-vertical_me">
+    <img src={trailheadLogoUrl} width=200px>
+    </div>
+    <div class="slds-m-vertical_medium">
+
+        <h2 class="slds-align_absolute-center slds-text-heading_medium">Sign up for your Salesforce Developer Edition</h2>
+
+        <p class="slds-align_absolute-center slds-text-body_regular">A full-featured copy of the Platform, for free</p>
+
+    </div>
+    <lightning-record-form
+        record-id={recordId}
+        object-api-name="homework__c"
+        fields={fields}
+        onsuccess={handleAccountCreated}
+        onerror={handleError}>
+    </lightning-record-form>
+    <div class="slds-m-vertical_medium">
+
+        <p class="slds-align_absolute-center slds-text-body_regular">By registering, you confirm you have read and agree to the Terms of Use and the Master Subscription Agreement and to the storing and processing of your personal data by Salesforce as described in the Privacy Statement, including use for marketing purposes.</p>
+
+    </div>
+    <div class="slds-m-vertical_medium">
+
+        <p class="slds-align_absolute-center slds-text-body_regular">Already have a Salesforce Developer Environment?</p>
+
+    </div>   
+    </div>
+</template>
