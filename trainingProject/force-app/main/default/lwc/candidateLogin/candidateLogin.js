@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-19 09:09:47
- * @LastEditTime: 2021-10-19 14:31:01
+ * @LastEditTime: 2021-10-19 14:57:00
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \trainingProject\force-app\main\default\lwc\candidateLogin\candidateLogin.js
@@ -190,11 +190,13 @@ export default class CandidateLogin extends LightningElement {
         }
         deleteCandidates({ids:ids})
         .then((result) => {
-            
+            refreshApex(this.Records); 
         })
         .catch((error) => {
         });
-        refreshApex(this.Records);
         
+     }
+     handleSuccess(){
+        refreshApex(this.Records);
      }
 }
