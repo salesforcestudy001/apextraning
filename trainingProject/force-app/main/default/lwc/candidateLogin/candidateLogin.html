@@ -1,0 +1,83 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-10-19 09:09:47
+ * @LastEditTime: 2021-10-19 14:03:29
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \trainingProject\force-app\main\default\lwc\candidateLogin\candidateLogin.html
+-->
+<template>
+    <lightning-card>
+        <template if:true={show}>
+            <lightning-record-view-form
+                        record-id={recordId}
+                        object-api-name={objectApiName}>
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-output-field field-name="Name"></lightning-output-field>
+                        <lightning-output-field field-name="Phone__c"></lightning-output-field>
+                        <lightning-output-field field-name="Education__c"></lightning-output-field>
+                        <lightning-output-field field-name="SSN__c"></lightning-output-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-output-field field-name="Age__c"></lightning-output-field>
+                        <lightning-output-field field-name="Email__c"></lightning-output-field>
+                        <lightning-output-field field-name="City__c"></lightning-output-field>
+                        <lightning-output-field field-name="VISA__c"></lightning-output-field>
+                    </div>
+                </div>
+                <div>
+                    <lightning-button class="slds-m-around_xx-small" label="編集" onclick={handleEdit}></lightning-button>
+                </div>
+            </lightning-record-view-form>
+        </template>
+        <template if:false={show}>
+            <lightning-record-edit-form 
+            record-id={recordId}
+            object-api-name={objectApiName}>
+                <lightning-messages></lightning-messages>
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-input-field field-name="Name"></lightning-input-field>
+                        <lightning-input-field field-name="Phone__c"></lightning-input-field>
+                        <lightning-input-field field-name="Education__c"></lightning-input-field>
+                        <lightning-input-field field-name="SSN__c"></lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-input-field field-name="Age__c"></lightning-input-field>
+                        <lightning-input-field field-name="Email__c"></lightning-input-field>
+                        <lightning-input-field field-name="City__c"></lightning-input-field>
+                        <lightning-input-field field-name="VISA__c"></lightning-input-field>
+                    </div>
+                </div>
+                <div class="slds-align_absolute-center slds-p-around_medium">
+                    <lightning-button class="slds-m-around_xx-small" label="Cancel" onclick={handleReset}></lightning-button>
+                    <lightning-button class="slds-m-around_xx-small" label="保存" type="submit" variant="brand" onclick={handleSave}></lightning-button>
+                </div>
+        </lightning-record-edit-form>
+        </template>
+    </lightning-card>
+    <lightning-card>
+        <lightning-input label='输入名字检索' onchange={handlechange}>
+
+        </lightning-input>
+        <lightning-datatable
+        key-field="Id"
+        columns={columns}
+        data={showdata}
+        onrowselection={getSelectedName}>
+
+        </lightning-datatable>
+        <lightning-layout>
+            <lightning-layout-item>
+                <lightning-button label="前頁" onclick={preHandler}></lightning-button>
+                <lightning-button label="後頁" onclick={nextHandler}></lightning-button>
+            </lightning-layout-item>
+            <lightning-layout-item flexibility="grow"></lightning-layout-item>
+            <lightning-layout-item>
+                <lightning-button label="+" onclick={plusHandler}></lightning-button>
+                <lightning-button label="-" onclick={minusHandler}></lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>
