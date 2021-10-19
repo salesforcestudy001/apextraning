@@ -1,0 +1,35 @@
+.hightop{
+    background-color: white;
+    height: auto;
+    width: 400px;
+    float: left;
+}
+
+.topbox{
+    height:auto;
+    width: 400px;
+    padding-right: 50px;
+    background: #fff;
+}
+
+.secondbox{
+    height:auto;
+    width: 400px;
+}
+
+.buttonstyle{
+    background-color: white;
+    text-align:center;
+    font-weight: 200;
+    color: blue;
+}
+
+.one,.two{
+    width: 50%;
+    height: auto;
+    border:none;
+    /* float: left; */
+    box-sizing: border-box;
+    /* @sldsValidatorIgnore */
+    display: inline-block;
+    }

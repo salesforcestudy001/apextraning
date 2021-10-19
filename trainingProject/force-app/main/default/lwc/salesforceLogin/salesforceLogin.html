@@ -1,0 +1,52 @@
+<template>
+    <div class="hightop">
+        <div class="topbox">
+            <img src={photo} alt="this is a logo!">
+            <h1 style="text-align:center"><strong>up for your Salesforce Developer Edition</strong></h1>
+            <br/>
+            <h4 style="text-align:center">A full-featured copy of the Platform,for free</h4>
+        </div>
+        <template if:true={success}>
+        </template>
+        <lightning-record-edit-form 
+        object-api-name={ObjectApiName}
+        onsuccess={handleSuccess}
+        onerror={handleError}
+        >
+        <lightning-messages></lightning-messages>
+            
+            <div class="secondbox">
+                <lightning-input-field field-name="First_Name__c" class="one" value="Your First Name"></lightning-input-field>
+                <lightning-input-field field-name="Last_Name__c" class="two" value="Your Last Name"></lightning-input-field>
+                <lightning-input-field field-name="Email__c" value="Your email address"></lightning-input-field>
+                <lightning-input-field field-name="Role__c"></lightning-input-field>
+                <lightning-input-field field-name="Company__c" value="Company Name"></lightning-input-field>
+                <lightning-input-field field-name="Country__c"></lightning-input-field>
+                <lightning-input-field field-name="Postal_Code__c" value="Your Postal Code"></lightning-input-field>
+                <lightning-input-field field-name="Username__c" value="Ex.name@yourcompany.com"></lightning-input-field>
+            </div>
+            <div style="height:auto;width: 400px">
+                <p>By registering, you confirm you have read and agree to the 
+                    <a href="https://trailblazer.me/terms" target="_blank"> Terms of Use</a> and the 
+                    <a href="https://www.salesforce.com/content/dam/web/en_us/www/documents/legal/salesforce_Developer_MSA.pdf" target="_blank">Master Subscription Agreement</a> and to the storing and processing of your personal data by Salesforce as described in the 
+                    <a href="https://www.salesforce.com/company/privacy/" target="_blank"> Privacy Statement</a>, including use for marketing purposes.
+                </p>
+            </div>
+            <div style="text-align:center;height:auto;width: 400px">
+                <lightning-button type="submit"
+                            name="submit"
+                            label="Sign me Up"
+                            class="buttonstyle"
+                            onclick={handleClick}
+                            >
+                </lightning-button>
+            </div>
+            <div style="height: auto;width:400px">
+                <p style="text-align:center">Already have a Salesforce Developer Envlronment?</p>
+            </div>
+            <div style="height: auto;width:400px">
+                <p style="text-align:center"><a href="https://login.salesforce.com/" target="_blank">Log In</a>></p>
+            </div>
+        </lightning-record-edit-form>
+    </div>
+</template>
