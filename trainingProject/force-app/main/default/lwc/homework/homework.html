@@ -1,0 +1,53 @@
+<template>
+
+    <div>
+        <template if:true={show}>
+            <lightning-record-edit-form
+            record-id={recordId}
+            object-api-name={candidate__cApiName}
+            onsuccess={save}>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-input-field field-name={FirstName}></lightning-input-field>
+                    <lightning-input-field field-name={LastName}></lightning-input-field>
+                    <lightning-input-field field-name={Phone}></lightning-input-field>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-input-field field-name={Email}></lightning-input-field>
+                    <lightning-input-field field-name={Education}></lightning-input-field>
+                </div>
+            </div>
+                <div class="slds-var-m-top_medium">
+                    <lightning-button variant="brand" value=" " label="Clean" onclick={clean}></lightning-button>
+                    <lightning-button variant="brand" type="submit" label="Save" ></lightning-button>
+                </div> 
+            </lightning-record-edit-form>
+        </template>
+    </div>
+
+    <div style="height: 350px;" >
+        <lightning-input type="search" name="input1" onchange={searchName}></lightning-input>        
+        <lightning-datatable
+                key-field="Id"
+                data={candidates.data} 
+                show-row-number-column
+                row-number-offset={rowOffset}
+                columns={columns}
+                onrowselection={getSelectedName}>
+        </lightning-datatable>
+        <template if:true={buttonpage1}>
+            <lightning-button label="前頁" onclick={page1}></lightning-button>
+        </template>
+        <template if:true={buttonpage2}>
+            <lightning-button label="後頁" onclick={page2}></lightning-button>
+        </template>
+        <div style="float: right;">
+            <lightning-button label="Edit" onclick={add1}></lightning-button>
+            <lightning-button label="delete" onclick={deleteId}></lightning-button>
+        </div>
+        
+    </div>
+   
+
+
+</template>

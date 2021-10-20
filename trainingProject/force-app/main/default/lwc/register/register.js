@@ -95,7 +95,7 @@ export default class Register extends LightningElement {
     }
     
 
-    save(e){
+    save(){
         // this.getUId();
         // console.log(this.id)
         // refreshApex(this.id);
