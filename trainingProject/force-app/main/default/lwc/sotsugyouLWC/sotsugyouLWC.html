@@ -1,0 +1,62 @@
+<template>
+    <template if:true={tableShow}>
+        <div>
+            <lightning-input type="text" name="inputUserName"  placeholder="名前を入力してください：" onchange={getByName} ></lightning-input>
+        </div>
+        <div style="height: 300px;">
+            <lightning-datatable
+                    key-field="Name"
+                    data={candidates.data}
+                    columns={columns}
+                    onrowselection={getSelectedName}>
+            </lightning-datatable>
+        </div>
+        <div>
+            <lightning-button variant="Delete" label="削除" title="Delete" onclick={Delete} class="slds-m-left_x-small"></lightning-button>
+        </div>
+        <div>
+            <lightning-button variant="Edit" label="編集" title="Edit" onclick={Edit} class="slds-m-left_x-small"></lightning-button>
+        </div>
+        <div>
+            <template if:true={LastButton}>
+                <lightning-button  variant="Last" label="前へ" title="Last" onclick={LastPage} class="slds-m-left_x-small"></lightning-button>
+            </template> 
+            <template if:true={NextButton}>
+                <lightning-button  variant="Next" label="次へ" title="Next" onclick={NextPage} class="slds-m-left_x-small"></lightning-button>
+            </template>
+        </div>
+    </template>
+    <template if:true={editShow}>
+        <lightning-record-edit-form
+            object-api-name={objectApiName}
+            record-id={cId}
+            onsuccess={SavePage}>
+            <lightning-messages></lightning-messages>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-input-field field-name="Last_Name__c"></lightning-input-field>
+                    <lightning-input-field field-name="Age__c"></lightning-input-field>
+                </div>
+            </div>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-input-field field-name="Phone__c"></lightning-input-field>
+                    <lightning-input-field field-name="Email__c"></lightning-input-field>
+                    <lightning-input-field field-name="Education__c"></lightning-input-field>
+                </div>
+            </div>
+            <div class="slds-m-top_medium">
+                <div>
+                    <lightning-button type="submit" variant="Save" label="保存" title="Save" class="slds-m-left_x-small"></lightning-button>
+                </div>
+                <div>
+                    <lightning-button variant="Cancel" label="キャンセル" title="Cancel" onclick={SavePage} class="slds-m-left_x-small"></lightning-button>
+                </div>
+            </div>
+        </lightning-record-edit-form>            
+    </template>
+
+    <!-- <div>
+        <lightning-button label="test" onclick={test01}></lightning-button>
+    </div>    -->
+</template>
