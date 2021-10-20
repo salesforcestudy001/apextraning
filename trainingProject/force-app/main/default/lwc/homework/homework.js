@@ -58,7 +58,7 @@ export default class Homework extends LightningElement {
         let first =  this.template.querySelectorAll('lightning-input');
         let ld = this.template.querySelectorAll("lightning-datatable");
         console.log(first[0].value);
-        getCandidateList({firstName:first[0].value,lastName:first[0].value})
+        getCandidateList({firstName:first[0].value,lastName:first[0].value,page:this.page})
         .then((result) =>{
             console.log(result);
             ld[0].data = result;
