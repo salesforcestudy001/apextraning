@@ -1,6 +1,8 @@
 import { LightningElement ,wire , api} from 'lwc';
 import getCandidateList from '@salesforce/apex/CandidateController.getCandidateList';
 import deleteCandidate from '@salesforce/apex/CandidateController.deleteCandidate';
+import countCandidate from '@salesforce/apex/CandidateController.countCandidate';
+
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { refreshApex} from '@salesforce/apex';
 const columns = [
@@ -16,6 +18,10 @@ const DELAY = 300;
 export default class MyCandidateController extends LightningElement {
     searchKey = '';
     @api recordId;
+    a = '1';
+    @wire(countCandidate, { a:'$a'})
+    rowsCount;
+
 
     @wire(getCandidateList, { searchKey: '$searchKey' ,page:'$page'})
     Candidate__c;
@@ -45,6 +51,7 @@ export default class MyCandidateController extends LightningElement {
             alert('删除成功');
             refreshApex(this.Candidate__c);
             window.open.reload;
+            this.a = this.a + 1;
         })
         .catch(error=>{
             console.log(error.body.message);
@@ -65,6 +72,7 @@ export default class MyCandidateController extends LightningElement {
         this.dispatchEvent(toastEvent);
         refreshApex(this.Candidate__c);
         window.open.reload;
+        this.a = this.a + 1;
     }
     handleReset(event){
         const inputFields = this.template.querySelectorAll(
@@ -90,15 +98,24 @@ export default class MyCandidateController extends LightningElement {
          }
      }
      page2(){
+        this.a = this.a + 1;
+        this.page = this.page + 1;
         this.beforepage=true;
-        console.log(this.Candidate__c.data.length);
-        if(this.Candidate__c.data.length!=10){
-            alert("已到达最后一页");
-           this.afterpage=false;
+        let countrow = this.rowsCount.data;
+        if((Number)((this.page + 1) * 10) >= countrow){
+            this.afterpage=false;
         }
-        else{
-            this.page=this.page+1;
-        }
+        // this.beforepage=true;
+        // consol.log(this.Candidate__c.data.length);
+
+        // if(this.Candidate__c.data.length!=10){
+        //     alert("已到达最后一页");
+        //    this.afterpage=false;
+        // }
+        // else{
+            
+        // }
+
        
      }
      

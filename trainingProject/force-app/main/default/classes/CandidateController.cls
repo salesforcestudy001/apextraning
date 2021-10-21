@@ -16,6 +16,13 @@ public with sharing class CandidateController {
         delete deleteData;
 
     }
-    
+    @AuraEnabled(cacheable=true)
+    public static Integer countCandidate(String a) {
+        System.debug('a' + a);
+        AggregateResult agg = [SELECT count(id) ids from Candidate__c];
+        Integer count = (Integer)(agg.get('ids'));
+        System.debug('count: ' + count);
+        return count;
+    }
 
 }
