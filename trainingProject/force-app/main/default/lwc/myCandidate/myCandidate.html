@@ -1,0 +1,142 @@
+<template>
+    <template if:false={show}>
+    <lightning-record-view-form 
+       record-id={recordId}
+       object-api-name={objectApiName}
+       onsuccess={addSuccess}>
+
+    <div class="slds-grid">
+            <div class="slds-col slds-size_1-of-2">
+                <lightning-output-field field-name="First_Name__c"></lightning-output-field>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+                <lightning-output-field field-name="Age__c"></lightning-output-field>
+           </div> 
+    </div> 
+    <div class="slds-grid">
+           <div class="slds-col slds-size_1-of-2">
+            <lightning-output-field field-name="Phone__c"></lightning-output-field> 
+           </div>
+           <div class="slds-col slds-size_1-of-2">
+            <lightning-output-field field-name="Email__c" ></lightning-output-field> 
+           </div>
+    </div>
+     <div class="slds-grid">
+           <div class="slds-col slds-size_1-of-2">
+            <lightning-output-field field-name="Education__c"></lightning-output-field> 
+           </div>
+           <div class="slds-col slds-size_1-of-2">
+            <lightning-output-field field-name="City__c"></lightning-output-field>          
+           </div>
+    </div>
+    <div class="slds-grid">
+        <div class="slds-col slds-size_1-of-2">
+            <lightning-output-field field-name="SSN__c" ></lightning-output-field>
+        </div>
+        <div class="slds-col slds-size_1-of-2">
+            <lightning-output-field field-name="Visa_Required__c" ></lightning-output-field>
+        </div>
+    </div>
+    
+    </lightning-record-view-form>
+    <div class="slds-p-around_medium">
+        <lightning-button  variant="Neutral" label="编辑"  onclick={handEdit}></lightning-button>
+    </div>
+</template>
+
+---------------------------------------------------------------------------------------------------------
+<template if:true={show}>
+    <lightning-record-edit-form 
+    record-id={recordId}
+    object-api-name={objectApiName}
+    onsuccess={addSuccess} >
+        <lightning-messages></lightning-messages>
+        
+    <div class="slds-grid">
+        <div class="slds-col slds-size_1-of-2">
+            <lightning-input-field field-name="First_Name__c" ></lightning-input-field>
+        </div>
+        <div class="slds-col slds-size_1-of-2">
+            <lightning-input-field field-name="Age__c" ></lightning-input-field>
+       </div> 
+</div> 
+<div class="slds-grid">
+       <div class="slds-col slds-size_1-of-2">
+        <lightning-input-field field-name="Phone__c"></lightning-input-field> 
+       </div>
+       <div class="slds-col slds-size_1-of-2">
+        <lightning-input-field field-name="Email__c" ></lightning-input-field> 
+       </div>
+</div>
+ <div class="slds-grid">
+       <div class="slds-col slds-size_1-of-2">
+        <lightning-input-field field-name="Education__c"></lightning-input-field> 
+       </div>
+       <div class="slds-col slds-size_1-of-2">
+        <lightning-input-field field-name="City__c" ></lightning-input-field>          
+       </div>
+</div>
+<div class="slds-grid">
+    <div class="slds-col slds-size_1-of-2">
+        <lightning-input-field field-name="SSN__c" ></lightning-input-field>
+    </div>
+    <div class="slds-col slds-size_1-of-2">
+        <lightning-input-field field-name="Visa_Required__c" ></lightning-input-field>
+    </div>
+</div>
+    <div class="slds-align_absolute-center slds-p-around_medium">
+        <lightning-button variant="destructive" class="slds-m-left_x-small" label="保存" type="submit"  onclick={handleSave}></lightning-button>
+        <lightning-button variant="success"   class="slds-m-around_x-small" label="取消" onclick={handleReset}></lightning-button>
+    </div>
+    </lightning-record-edit-form>
+    </template>
+
+*****************************************************************************************************
+
+<div style="height: 300px;width:1000px">
+
+    <div style="width:300px">
+    <lightning-input label='搜索名字检索' 
+                     onchange={handlechange} 
+                     type="search" 
+                     value={Firstname}>
+   </lightning-input>
+    </div>
+    <br>
+        <lightning-datatable  
+            key-field="Id" 
+            data={Candidate__c.data} 
+            columns={columns} 
+           onrowselection={Selectdetail}>
+        </lightning-datatable>
+        
+        <lightning-layout class="slds-align_absolute-center slds-p-around_medium">
+     <template if:true={page1}>
+            <lightning-layout-item>
+                <lightning-button label="前页" onclick={upHandler}></lightning-button>
+            </lightning-layout-item>
+    </template>
+    <template if:true={page2}>
+            <lightning-layout-item>
+                <lightning-button label="后页"  onclick={downHandler}></lightning-button>
+            </lightning-layout-item>
+    </template>
+            
+        <lightning-layout-item >
+            <lightning-button label="+" onclick={addHandler}></lightning-button>
+        </lightning-layout-item>
+
+        <lightning-layout-item>
+            <lightning-button label="-"  onclick={minHandler}></lightning-button>
+        </lightning-layout-item>
+
+       </lightning-layout>
+       
+</div>
+</template>
+
+
+    
+   
+   
+
