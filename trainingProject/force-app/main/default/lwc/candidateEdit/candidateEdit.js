@@ -131,7 +131,7 @@ export default class CandidateEdit extends LightningElement {
             let rows = this.template.querySelector("lightning-datatable");
             rows.data = res;
         })
-       // TODO
+      
        console.log(this.allRows.data);
        if((Number)(this.page) == 0){
            this.lastButton = true;
