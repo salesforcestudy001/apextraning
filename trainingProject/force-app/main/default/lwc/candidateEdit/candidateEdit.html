@@ -1,0 +1,82 @@
+<template>
+    <!-- 查看详细信息 -->
+    <template if:true={view}>
+        <lightning-record-view-form 
+                object-api-name="Candidate__c"
+                record-id={recordId}
+                 >
+                    <lightning-output-field field-name="allName__c" class="name"></lightning-output-field>
+                    <lightning-output-field field-name="age__c" class="name"></lightning-output-field>
+                    <lightning-output-field field-name="Phone__c" class="name"></lightning-output-field> 
+                    <lightning-output-field field-name="Email__c" class="name"></lightning-output-field> 
+                    <lightning-output-field field-name="Education__c" class="name"></lightning-output-field> 
+                    <div class="slds-align_absolute-center slds-p-around_medium">
+                        <lightning-button class="slds-m-around_xx-small" label="edit" onclick={editRows}></lightning-button>
+                        <lightning-button class="slds-m-around_xx-small" label="cancel" onclick={canceEditRows}></lightning-button>
+                    </div>
+            </lightning-record-view-form>
+    </template>
+
+    <!-- edit -->
+    <template if:true={edit}>
+        <lightning-record-edit-form 
+                object-api-name="Candidate__c"
+                record-id={recordId}
+                onsuccess={created}>
+                    <lightning-input-field field-name="allName__c" class="name"></lightning-input-field>
+                    <lightning-input-field field-name="age__c" class="name"></lightning-input-field>
+                    <lightning-input-field field-name="Phone__c" class="name"></lightning-input-field> 
+                    <lightning-input-field field-name="Email__c" class="name"></lightning-input-field> 
+                    <lightning-input-field field-name="Education__c" class="name"></lightning-input-field> 
+                    <div class="slds-align_absolute-center slds-p-around_medium">
+                        <lightning-button class="slds-m-around_xx-small" label="Cancel" onclick={handleReset}></lightning-button>
+                        <lightning-button class="slds-m-around_xx-small" label="save" type="submit" variant="brand" ></lightning-button>
+                    </div>
+            </lightning-record-edit-form>
+        </template>
+    
+    <!-- add -->
+    <template if:true={add}>
+        <lightning-record-edit-form 
+                object-api-name="Candidate__c"
+                onsuccess={created}>
+                    <lightning-input-field field-name="allName__c"></lightning-input-field>
+                    <lightning-input-field field-name="age__c"></lightning-input-field>
+                    <lightning-input-field field-name="Phone__c"></lightning-input-field> 
+                    <lightning-input-field field-name="Email__c"></lightning-input-field> 
+                    <lightning-input-field field-name="Education__c"></lightning-input-field> 
+                    <div class="slds-align_absolute-center slds-p-around_medium">
+                        <lightning-button class="slds-m-around_xx-small" label="Cancel" onclick={handleReset}></lightning-button>
+                        <lightning-button class="slds-m-around_xx-small" label="save" type="submit" variant="brand" ></lightning-button>
+                    </div>
+            </lightning-record-edit-form>
+    </template>
+
+    <!-- 模糊查询 -->
+    <lightning-input placeholder="曖昧検索" onchange={selectAllName}></lightning-input>
+
+    <!-- 表信息 -->
+    <div>
+        <lightning-datatable
+                key-field="id"
+                data={Pages.data}
+                columns={columns}
+                onrowselection={getSelectedName}
+                onrowaction={handleRowAction}
+                >
+        </lightning-datatable>
+    </div>    
+
+    <lightning-button-group>
+        <lightning-button label="前へ" onclick ={lastPage} disabled={lastButton}></lightning-button>  
+        <lightning-button label="次へ" onclick={nextPage} disabled={nextButton}></lightning-button>
+    </lightning-button-group>
+
+    <lightning-button-group class="right">
+        <lightning-button label="-" onclick={delectRows}></lightning-button>
+        <lightning-button label="+" onclick={addCandidate}></lightning-button>
+    </lightning-button-group>
+
+
+
+</template>

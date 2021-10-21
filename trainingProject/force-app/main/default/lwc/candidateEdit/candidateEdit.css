@@ -1,0 +1,19 @@
+.right{
+    float: right;
+}
+.in{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+.name{
+    width: 350px;
+    float: left;
+    margin-right: 10px;
+}
+lightning-output-field{
+    float: left;
+    border: 1px solid cornflowerblue;
+    background-color: white;
+    border-radius: 5px;
+}
