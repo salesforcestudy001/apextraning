@@ -88,11 +88,12 @@ export default class MyCandidateController extends LightningElement {
      }
      page2(){
         this.beforepage=true;
-        let all= this.template.querySelector('lightning-datatable');
-        let i=(Number)(Math.floor(all.data.length/10));
-        this.page=this.page+1;
-        if(i==this.page){
-            this.afterpage=false;
+        console.log(this.Candidate__c.data.length);
+        if(this.Candidate__c.data.length!=10){
+            alert("已到达最后一页");
+           this.afterpage=false;
         }
+        this.page=this.page+1;
      }
+     
 }
