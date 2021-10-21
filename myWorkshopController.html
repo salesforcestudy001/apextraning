@@ -1,0 +1,72 @@
+<template>
+    <div>
+    <template if:false={show}>
+        <lightning-record-view-form 
+            record-id={recordId}
+            object-api-name="Candidate__c"
+            onsuccess={handleSuccess}
+        >
+        <lightning-messages></lightning-messages>
+        <div>
+            <lightning-output-field field-name="Name__c" label="名字"></lightning-output-field>
+            <lightning-output-field field-name="age__c" label="年龄"></lightning-output-field>
+            <lightning-output-field field-name="Phone__c"></lightning-output-field>
+            <lightning-output-field field-name="Email__c"></lightning-output-field> 
+        </div>
+        <div>
+            <lightning-output-field field-name="Education__c"></lightning-output-field>
+            <lightning-output-field field-name="City__c"></lightning-output-field>
+            <lightning-output-field field-name="SSN__c"></lightning-output-field>
+            <lightning-output-field field-name="Visa_Required__c"></lightning-output-field>>  
+        </div>
+        <div>
+            <lightning-button  label="编辑" onclick={edit}></lightning-button>
+        </div>
+        </lightning-record-view-form>
+    </template>
+    </div>
+    <div>
+    <template if:true={show}>
+            <lightning-record-edit-form 
+                record-id={recordId}
+                object-api-name="Candidate__c"
+                onsuccess={handleSuccess}
+            >
+            <lightning-messages></lightning-messages>
+            <div>
+                <lightning-input-field field-name="Name__c" label="名字"></lightning-input-field>
+                <lightning-input-field field-name="age__c" label="年龄"></lightning-input-field>
+                <lightning-input-field field-name="Phone__c"></lightning-input-field>
+                <lightning-input-field field-name="Email__c"></lightning-input-field> 
+            </div>
+            <div>
+                <lightning-input-field field-name="Education__c"></lightning-input-field>  
+                <lightning-input-field field-name="City__c"></lightning-input-field>  
+                <lightning-input-field field-name="SSN__c"></lightning-input-field>  
+                <lightning-input-field field-name="Visa_Required__c"></lightning-input-field>  
+            </div>
+            <div>
+                <lightning-button class="button1" label="保存" type="submit" variant="brand"></lightning-button>
+                <lightning-button class="button1" label="取消" onclick={handleReset}></lightning-button>
+            </div>
+            </lightning-record-edit-form>
+        </template>
+    </div>
+    <lightning-input type="search" onchange={handleKeyChange} class="slds-m-bottom_small" label="Search Name" value={getKey}></lightning-input>
+    <lightning-datatable
+    key-field="Id"
+    data={Candidate__c.data}
+    columns={columns}
+    onrowselection={selectdetail}
+    ></lightning-datatable>
+    <template if:true={previouspage}>
+        <lightning-button label="上一页" onclick={previouspage}></lightning-button>
+    </template>
+    <template if:true={nextpage}>
+        <lightning-button label="下一页" onclick={nextpage}></lightning-button>
+    </template>
+    <div>
+    <lightning-button label="+" onclick={edit}></lightning-button>
+    <lightning-button label="-" onclick={deleteCand}></lightning-button>
+    </div>
+</template>
