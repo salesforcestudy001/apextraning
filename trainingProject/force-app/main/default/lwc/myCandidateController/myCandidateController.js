@@ -80,6 +80,7 @@ export default class MyCandidateController extends LightningElement {
      page=0;
      page1(){
          this.beforepage=true;
+         this.afterpage=true;
          this.page=this.page-1;
          if(this.page==0){
              this.beforepage=false;
@@ -93,7 +94,10 @@ export default class MyCandidateController extends LightningElement {
             alert("已到达最后一页");
            this.afterpage=false;
         }
-        this.page=this.page+1;
+        else{
+            this.page=this.page+1;
+        }
+       
      }
      
 }
