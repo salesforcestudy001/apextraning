@@ -1,7 +1,7 @@
 import { LightningElement ,api} from 'lwc';
 import TRAILHEAD_LOGO from '@salesforce/resourceUrl/showsalesforce';
-import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 export default class mySalesforceLogin extends LightningElement {
 
     trailheadLogoUrl = TRAILHEAD_LOGO;

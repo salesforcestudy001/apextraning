@@ -1,0 +1,22 @@
+.box{
+    width: 860px;
+    height:auto;
+
+}
+.left{
+    height:auto;
+    width: 400px;
+    padding: 20px;
+    float:left;
+}
+.com{
+    padding:5px, 20px;
+    float:right;
+}
+.box1{
+    padding: 5px;
+}
+.box2{
+    padding: 5px;
+    float:right;
+}
