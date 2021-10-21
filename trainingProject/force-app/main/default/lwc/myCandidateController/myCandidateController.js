@@ -44,6 +44,7 @@ export default class MyCandidateController extends LightningElement {
         .then(result=>{
             alert('删除成功');
             refreshApex(this.Candidate__c);
+            window.open.reload;
         })
         .catch(error=>{
             console.log(error.body.message);
@@ -62,6 +63,7 @@ export default class MyCandidateController extends LightningElement {
             variant: "success"
         });
         this.dispatchEvent(toastEvent);
+        refreshApex(this.Candidate__c);
         window.open.reload;
     }
     handleReset(event){
