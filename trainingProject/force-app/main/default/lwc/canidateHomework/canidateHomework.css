@@ -1,0 +1,28 @@
+.border1{
+    border-top:1px solid #000;
+    border-bottom:1px solid #000;
+    /* border-left:1px solid #000;
+    border-right:1px solid #000; */
+}
+.border2{
+    border-top:1px solid #000;
+    border-bottom:1px solid #000;
+    /* border-left:1px solid #000;
+    border-right:1px solid #000; */
+}
+.btnedit{
+    padding-left: 900px;
+}
+.btncancel{
+    padding-bottom: 10px;
+    padding-left: 400px;
+    /* float:left; */
+}
+.btnsave{
+    padding-bottom: 10px;
+    padding-left: 60px;
+    /* float:left; */
+}
+.querybox{
+    width:110px;
+}

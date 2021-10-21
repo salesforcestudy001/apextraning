@@ -1,0 +1,95 @@
+<template>
+
+    <!-- 編集 page  -->
+    <lightning-card>
+        <template if:true={show}>
+            <lightning-record-view-form
+                       record-id={recordId}
+                       object-api-name={objectApiName}>
+            <div class = "border1">
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-2">
+                        <!-- name phone education and SSN-->
+                        <lightning-output-field field-name="Candidate_Name__c" type="text" value="Your name"></lightning-output-field>
+                        <lightning-output-field field-name="Candidate_Phone__c" type = "phone" value="Your phone"></lightning-output-field>
+                        <lightning-output-field field-name="Candidate_Education__c" placeholder="Select Education"></lightning-output-field>
+                        <lightning-output-field field-name="Candidate_SSN__c" type="text" value="SSN"></lightning-output-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <!-- age email city and visa required-->
+                        <lightning-output-field field-name="Candidate_Age__c" type = "text" value="Your age"></lightning-output-field>
+                        <lightning-output-field field-name="Candidate_Email__c" type = "email" value="Your email"></lightning-output-field>
+                        <lightning-output-field field-name="Candidate_City__c" type = "text" value="Your city"></lightning-output-field>
+                        <lightning-output-field field-name="Candidate_Visa_Required__c" type="text" value="Visa Required"></lightning-output-field>
+                    </div>
+                </div>
+                <div>
+                    <lightning-button class="btnedit" label="Edit"  title="edit action" onclick={edithandle}></lightning-button>
+                </div>
+            </div>
+            </lightning-record-view-form>
+        </template>
+
+        <!-- click 編集 -->
+        <template if:false={show}>
+            <lightning-record-edit-form 
+                       record-id={recordId}
+                       object-api-name={objectApiName}
+                       onsuccess={handleSuccess}>
+                <!-- <lightning-messages></lightning-messages> -->
+                <div class = "border2">
+                <div class = "slds-grid">
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-input-field field-name="Candidate_Name__c" type="text" value="Your name"></lightning-input-field>
+                        <lightning-input-field field-name="Candidate_Phone__c" type = "phone" value="Your phone"></lightning-input-field>
+                        <lightning-input-field field-name="Candidate_Education__c" placeholder="Select Education"></lightning-input-field>
+                        <lightning-input-field field-name="Candidate_SSN__c" type="text" value="SSN"></lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-input-field field-name="Candidate_Age__c" type = "text" value="Your age"></lightning-input-field>
+                        <lightning-input-field field-name="Candidate_Email__c" type = "email" value="Your email"></lightning-input-field>
+                        <lightning-input-field field-name="Candidate_City__c" type = "text" value="Your city"></lightning-input-field>
+                        <lightning-input-field field-name="Candidate_Visa_Required__c" type="text" value="Visa Required"></lightning-input-field>
+                    </div>
+                </div>
+                <div>
+                    <lightning-button class="btncancel" label="Cancel" onclick={cancelhandle}></lightning-button>
+                    <lightning-button class="btnsave" variant="brand" label="Save" type="submit"  onclick={savehandle}></lightning-button>
+                </div>
+            </div>
+        </lightning-record-edit-form>
+        </template>
+    </lightning-card>
+
+    <!-- table content & query action -->
+    <!-- <div> -->
+    <lightning-card>
+        
+        <!-- query action -->
+        <lightning-input label= '😀请输入姓名： ' class = "querybox" onchange={handlechange}></lightning-input>
+            
+        <!-- table content -->
+            <lightning-datatable  key-field="id" columns={columns} data={showdata} onrowselection={getSelectedName}></lightning-datatable>
+        
+        <!-- table page btn action -->
+        <lightning-layout>
+
+            <!-- Previous Page action & Next Page action -->
+            <lightning-layout-item>
+                <lightning-button label="Previous" onclick={previousHandler}></lightning-button>
+                <lightning-button label="Next" onclick={nextHandler}></lightning-button>
+            </lightning-layout-item>
+
+            <!-- 自动优化 -->
+            <lightning-layout-item flexibility="grow"></lightning-layout-item>
+            
+            <!--  + & - -->
+            <lightning-layout-item>
+                <lightning-button label="+" onclick={addHandler}></lightning-button>
+                <lightning-button label="-" onclick={deleteHandler}></lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+
+    </lightning-card>
+<!-- </div>  -->
+</template>
